@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  app:
+    build: ./app
+    links:
+      - db
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app:/app
+    environment:
+      FLASK_ENV: development
+  db:
+    image: mysql
+    restart: always
+    command: --init-file /db/init.sql --default-authentication-plugin=mysql_native_password
+    ports:
+    - "33060:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+    - ./db/init.sql:/db/init.sql
+    - ./db/data:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
