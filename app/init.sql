@@ -114,17 +114,17 @@ CREATE TABLE `achievement_table` (
   PRIMARY KEY (`student_id`, `achievement`)
 );
 
-ALTER TABLE `credential_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `student_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
-ALTER TABLE `tenth_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `tenth_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
-ALTER TABLE `twelfth_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `twelfth_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
-ALTER TABLE `reference_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `reference_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
 ALTER TABLE `reference_table` ADD FOREIGN KEY (`professor_id`) REFERENCES `professor_table` (`professor_id`);
 
-ALTER TABLE `project_student_relation_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `project_student_relation_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
 ALTER TABLE `project_student_relation_table` ADD FOREIGN KEY (`project_id`) REFERENCES `project_table` (`project_id`);
 
@@ -132,14 +132,14 @@ ALTER TABLE `project_professor_relation_table` ADD FOREIGN KEY (`professor_id`) 
 
 ALTER TABLE `project_professor_relation_table` ADD FOREIGN KEY (`project_id`) REFERENCES `project_table` (`project_id`);
 
-ALTER TABLE `sgpa_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `sgpa_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
-ALTER TABLE `internship_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `internship_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
-ALTER TABLE `extra_curricular_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `extra_curricular_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
-ALTER TABLE `skill_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `skill_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
-ALTER TABLE `language_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `language_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
 
-ALTER TABLE `achievement_table` ADD FOREIGN KEY (`student_id`) REFERENCES `student_table` (`student_id`);
+ALTER TABLE `achievement_table` ADD FOREIGN KEY (`student_id`) REFERENCES `credential_table` (`student_id`);
