@@ -17,11 +17,11 @@ services:
     image: mysql
     restart: always
     ports:
-      - "33060:3306"
+      - "52000:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
-    - ./db:/var/lib/mysql
+    - cv-builder-data:/var/lib/mysql
 
   adminer:
     links:
@@ -31,3 +31,6 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+volumes:
+  cv-builder-data:

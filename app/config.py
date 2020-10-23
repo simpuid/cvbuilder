@@ -1,3 +1,5 @@
+import os
+
 db_config = {
     'user': 'root',
     'password': 'password',
@@ -7,4 +9,4 @@ db_config = {
 
 
 class AppConfig(object):
-    SECRET_KEY = 'a_secret_key'
+    SECRET_KEY = os.urandom(16)

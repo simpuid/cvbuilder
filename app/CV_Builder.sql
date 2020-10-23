@@ -1,5 +1,5 @@
-CREATE SCHEMA cv_data;
-USE cv_data;
+CREATE SCHEMA cv_builder;
+USE cv_builder;
 
 CREATE TABLE `student_table` (
   `student_id` int UNIQUE PRIMARY KEY NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE `student_table` (
 
 CREATE TABLE `credential_table` (
   `student_id` int UNIQUE PRIMARY KEY NOT NULL,
-  `hash` varchar(255) NOT NULL
+  `password_hash` varchar(255) NOT NULL
 );
 
 CREATE TABLE `professor_table` (

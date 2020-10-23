@@ -15,15 +15,15 @@ class User(UserMixin):
         return check_password_hash(self.hash, password)
 
     def apply(self):
-        execute('INSERT INTO app_user VALUES (%s, %s)'
-                'ON DUPLICATE KEY UPDATE id = VALUES(id), hash = VALUES(hash)', (self.id, self.hash))
+        execute('INSERT INTO credential_table VALUES (%s, %s)'
+                'ON DUPLICATE KEY UPDATE student_id = VALUES(id), hash = VALUES(hash)', (self.id, self.hash))
 
     def delete(self):
-        execute('DELETE FROM app_user WHERE client.id = %s', (self.id,))
+        execute('DELETE FROM credential_table WHERE student_id = %s', (self.id,))
 
     @staticmethod
     def load(uid):
-        execute('SELECT * FROM app_user WHERE id = %s', (uid,))
+        execute('SELECT * FROM credential_table WHERE student_id = %s', (uid,))
         data = fetch()
         if len(data) == 0:
             return None
