@@ -1,5 +1,6 @@
 from flask import *
 from werkzeug.urls import url_parse
+from flask_bootstrap import Bootstrap
 
 from db import *
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
@@ -10,6 +11,7 @@ from model import User, populate_users
 app = Flask(__name__)
 app.config.from_object(AppConfig)
 login = LoginManager(app)
+Bootstrap(app)
 login.login_view = 'login'
 
 initialize('cv_data', 'init.sql')
@@ -24,7 +26,7 @@ def load_user(uid):
 @app.route('/')
 @login_required
 def home():
-    return render_template('home.html', title='Welcome')
+    return render_template('home.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -42,7 +44,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
         return redirect(next_page)
-    return render_template('login.html', title='Log In', form=form)
+    return render_template('login.html', form=form)
 
 
 @app.route('/logout')
@@ -64,4 +66,16 @@ def password():
         commit()
         logout_user()
         return redirect(url_for('home'))
-    return render_template('password.html', title='Change Password', form=form)
+    return render_template('password.html', form=form)
+
+
+@app.route('/sharam')
+def handle_sharam():
+    return render_template('sharam.html'), 403
+
+
+@app.errorhandler(404)
+def handle_404(e):
+    return render_template("404_error.html"), 404
+
+
