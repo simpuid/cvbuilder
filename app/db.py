@@ -1,19 +1,14 @@
 import mysql.connector as sql
+from config import db_config
 
-connection_config = {
-    'user': 'root',
-    'password': 'password',
-    'host': 'db',
-    'port': '3306',
-}
-connection = sql.connect(**connection_config)
+connection = sql.connect(**db_config)
 cursor = connection.cursor(dictionary=True)
 
 
-def execute(command, parameter=()):
+def execute(command: str, data = ()):
     global cursor
-    # print('execute "' + command + '",', parameter, flush=True)
-    cursor.execute(command, parameter)
+    print('execute "' + command + '",', data, flush=True)
+    cursor.execute(command, data)
 
 
 def fetch():
@@ -26,32 +21,31 @@ def commit():
     connection.commit()
 
 
-def check_database(name):
-    execute('SHOW DATABASES')
+def check_database(name: str):
+    execute('SHOW DATABASES', ())
     for element in fetch():
         if element['Database'] == name:
             return True
     return False
 
 
-def execute_file(path):
+def execute_file(path: str):
     file = open(path)
     commands = file.read().split(';')
     file.close()
     for command in commands:
         strip = command.strip()
         if strip != '':
-            execute(strip)
+            execute(strip, ())
 
 
-def initialize(name, path):
+def initialize(name: str, path: str):
     global connection
     global cursor
-    global connection_config
     if not check_database(name):
         execute_file(path)
         commit()
     connection.close()
-    connection_config['database'] = name
-    connection = sql.connect(**connection_config)
+    db_config['database'] = name
+    connection = sql.connect(**db_config)
     cursor = connection.cursor(dictionary=True)

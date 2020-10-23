@@ -1,3 +1,4 @@
-Flask
 mysql-connector-python
-simplejson
+Flask
+Flask-WTF
+Flask-Login
