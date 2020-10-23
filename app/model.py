@@ -16,7 +16,8 @@ class User(UserMixin):
 
     def apply(self):
         execute('INSERT INTO credential_table VALUES (%s, %s)'
-                'ON DUPLICATE KEY UPDATE student_id = VALUES(id), hash = VALUES(hash)', (self.id, self.hash))
+                'ON DUPLICATE KEY UPDATE student_id = VALUES(student_id), hash = VALUES(hash)',
+                (self.id, self.hash))
 
     def delete(self):
         execute('DELETE FROM credential_table WHERE student_id = %s', (self.id,))
@@ -27,7 +28,7 @@ class User(UserMixin):
         data = fetch()
         if len(data) == 0:
             return None
-        return User(data[0]['id'], data[0]['hash'])
+        return User(data[0]['student_id'], data[0]['hash'])
 
 
 def populate_users():

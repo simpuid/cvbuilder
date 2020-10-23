@@ -5,7 +5,7 @@ connection = sql.connect(**db_config)
 cursor = connection.cursor(dictionary=True)
 
 
-def execute(command: str, data = ()):
+def execute(command: str, data=()):
     global cursor
     print('execute "' + command + '",', data, flush=True)
     cursor.execute(command, data)
