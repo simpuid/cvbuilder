@@ -27,7 +27,11 @@ def load_user(uid):
 @login_required
 def home():
     student = Student.load(current_user.id)
-    return render_template('home.html', student=student)
+    if student is not None:
+        name = student.name
+    else:
+        name = current_user.id
+    return render_template('home.html', name=name)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -83,7 +87,10 @@ def edit_student():
         flash('Data updated successfully', 'success')
         return redirect(url_for('edit_student'))
     student = Student.load(current_user.id)
-    return render_template('student.html', form=form, student=student)
+    form.name.data, form.phone.data, form.email.data = student.name, student.phone, student.email
+    form.dob.data, form.branch.data, form.minor.data, = student.dob, student.branch, student.minor
+    form.year.data = student.year
+    return render_template('student.html', form=form)
 
 
 @app.route('/sharam')

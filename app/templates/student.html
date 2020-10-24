@@ -27,25 +27,25 @@
                 {% endwith %}
                 {{ form.csrf_token() }}
                 <div class="form-group mt-2">
-                    {{ wtf.form_field(form.name, class='form-control', value='' if student is none else student.name, maxlength="50") }}
+                    {{ wtf.form_field(form.name, class='form-control', maxlength="50") }}
                 </div>
                 <div class="form-group mt-2">
-                    {{ wtf.form_field(form.phone, class='form-control', value='' if student is none else student.phone, maxlength="10") }}
+                    {{ wtf.form_field(form.phone, class='form-control', maxlength="10") }}
                 </div>
                 <div class="form-group mt-2">
-                    {{ wtf.form_field(form.email, class='form-control', value='' if student is none else student.email) }}
+                    {{ wtf.form_field(form.email, class='form-control') }}
                 </div>
                 <div class="form-group mt-2">
-                    {{ wtf.form_field(form.dob, class='form-control', value='' if student is none else student.dob, maxlength="10") }}
+                    {{ wtf.form_field(form.dob, class='form-control', maxlength="10") }}
                 </div>
                 <div class="form-group mt-2">
-                    {{ wtf.form_field(form.branch, class='form-control', value='' if student is none else student.branch, maxlength="50") }}
+                    {{ wtf.form_field(form.branch, class='form-control', maxlength="50") }}
                 </div>
                 <div class="form-group mt-2">
-                    {{ wtf.form_field(form.minor, class='form-control', value='' if student is none else student.minor, maxlength="50") }}
+                    {{ wtf.form_field(form.minor, class='form-control', maxlength="50") }}
                 </div>
                 <div class="form-group mt-2">
-                    {{ wtf.form_field(form.year, class='form-control', value='' if student is none else student.year, maxlength="1") }}
+                    {{ wtf.form_field(form.year, class='form-control', maxlength="1") }}
                 </div>
                 <div class="text-center mt-3">
                     {{ wtf.form_field(form.submit, class='btn btn-md btn-primary') }}
