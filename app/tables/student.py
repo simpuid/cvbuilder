@@ -1,8 +1,7 @@
-from flask_wtf import FlaskForm
 from db import execute, fetch
 
 
-class Student(FlaskForm):
+class Student:
     def __init__(self, uid: int, name: str, phone: str, email: str, dob: str, branch: str, minor: str, year: str):
         self.id = uid
         self.name = name
