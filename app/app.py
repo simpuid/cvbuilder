@@ -62,10 +62,10 @@ def password():
             flash('Current Password wrong')
             return redirect(url_for('password'))
         current_user.set_password(form.new_password.data)
-        current_user.apply()
+        current_user.save()
         commit()
         logout_user()
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     return render_template('password.html', form=form)
 
 
