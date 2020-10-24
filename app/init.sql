@@ -16,3 +16,5 @@ CREATE TABLE student_table (
   student_minor varchar(128) NOT NULL,
   student_year int NOT NULL
 );
+
+ALTER TABLE student_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);

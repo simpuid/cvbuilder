@@ -1,0 +1,40 @@
+from werkzeug.security import generate_password_hash, check_password_hash
+from db import execute, fetch, commit
+from flask_login import UserMixin
+
+
+class User(UserMixin):
+    def __init__(self, user_id: int, user_hash: str = ''):
+        self.id = user_id
+        self.user_hash = user_hash
+
+    def set_password(self, password):
+        self.user_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.user_hash, password)
+
+    def apply(self):
+        execute('INSERT INTO user_table VALUES (%s, %s)'
+                'ON DUPLICATE KEY UPDATE user_id = VALUES(user_id), user_hash = VALUES(user_hash)',
+                (self.id, self.user_hash))
+
+    def delete(self):
+        execute('DELETE FROM user_table WHERE user_id = %s', (self.id,))
+
+    @staticmethod
+    def load(uid):
+        execute('SELECT * FROM user_table WHERE user_id = %s', (uid,))
+        data = fetch()
+        if len(data) == 0:
+            return None
+        return User(data[0]['user_id'], data[0]['user_hash'])
+
+
+def populate_users():
+    for i in range(18114000, 18114084 + 1):
+        if User.load(i) is None:
+            user = User(i)
+            user.set_password(f'{i}')
+            user.apply()
+    commit()
