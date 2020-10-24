@@ -1,8 +1,9 @@
-from db import execute, commit
+from flask_wtf import FlaskForm
+from db import execute, fetch
 
 
 class Student(FlaskForm):
-    def __init__(self, uid, name, phone, email, dob, branch, minor, year):
+    def __init__(self, uid: int, name: str, phone: str, email: str, dob: str, branch: str, minor: str, year: str):
         self.id = uid
         self.name = name
         self.phone = phone
@@ -25,3 +26,21 @@ class Student(FlaskForm):
                 'student_minor = VALUES(student_minor),'
                 'student_year = VALUES(student_year)',
                 (self.id, self.name, self.phone, self.email, self.dob, self.branch, self.minor, self.year))
+
+    @staticmethod
+    def load(uid: int):
+        execute('SELECT * FROM student_table WHERE student_id = %s', (uid,))
+        data = fetch()
+        if len(data) == 0:
+            return None
+        return Student(
+            data[0]['student_id'],
+            data[0]['student_name'],
+            data[0]['student_phone'],
+            data[0]['student_email'],
+            data[0]['student_dob'],
+            data[0]['student_branch'],
+            data[0]['student_minor'],
+            data[0]['student_year'],
+        )
+

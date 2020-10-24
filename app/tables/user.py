@@ -20,7 +20,7 @@ class User(UserMixin):
                 (self.id, self.hash))
 
     @staticmethod
-    def load(uid):
+    def load(uid: int):
         execute('SELECT * FROM user_table WHERE user_id = %s', (uid,))
         data = fetch()
         if len(data) == 0:
