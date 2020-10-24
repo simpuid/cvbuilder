@@ -6,7 +6,7 @@ from db import *
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from config import AppConfig
 from forms import LoginForm, PasswordForm
-from model import User, populate_users
+from tables import *
 
 app = Flask(__name__)
 app.config.from_object(AppConfig)
