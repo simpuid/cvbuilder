@@ -18,7 +18,7 @@
             </nav>
             <div class="shadow-lg p-3 mb-5 bg-white rounded">
                 <div class="jumbotron mt-2">
-                    <h1 class="display-4">Hello, {{ current_user.id }}!</h1>
+                    <h1 class="display-4">Hello, {{ current_user.id if student is none else student.name }}!</h1>
                     <p class="lead">Welcome to CV Builder, the most powerful resume builder.
                         Everything you need to make your next career move.</p>
                     <hr class="my-4">

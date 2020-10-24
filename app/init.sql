@@ -9,7 +9,7 @@ CREATE TABLE user_table (
 CREATE TABLE student_table (
   student_id int UNIQUE PRIMARY KEY NOT NULL,
   student_name varchar(128) NOT NULL,
-  student_phone varchar(16) UNIQUE NOT NULL,
+  student_phone int UNIQUE NOT NULL,
   student_email varchar(128) UNIQUE NOT NULL,
   student_dob date NOT NULL,
   student_branch varchar(128) NOT NULL,
