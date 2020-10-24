@@ -55,6 +55,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
+    flash('Successfully logged out', 'success')
     return redirect(url_for('home'))
 
 
@@ -70,6 +71,7 @@ def password():
         current_user.save()
         commit()
         logout_user()
+        flash('Password change successful. Please login again', 'success')
         return redirect(url_for('login'))
     return render_template('password.html', form=form)
 
