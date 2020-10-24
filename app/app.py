@@ -5,7 +5,7 @@ from flask_bootstrap import Bootstrap
 from db import *
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from config import AppConfig
-from forms import LoginForm, PasswordForm, StudentForm
+from forms import LoginForm, PasswordForm, StudentForm, TenthForm, TwelfthForm
 from tables import *
 
 app = Flask(__name__)
@@ -87,10 +87,45 @@ def edit_student():
         flash('Data updated successfully', 'success')
         return redirect(url_for('edit_student'))
     student = Student.load(current_user.id)
-    form.name.data, form.phone.data, form.email.data = student.name, student.phone, student.email
-    form.dob.data, form.branch.data, form.minor.data, = student.dob, student.branch, student.minor
-    form.year.data = student.year
+    if student is not None:
+        form.name.data, form.phone.data, form.email.data = student.name, student.phone, student.email
+        form.dob.data, form.branch.data, form.minor.data, = student.dob, student.branch, student.minor
+        form.year.data = student.year
     return render_template('student.html', form=form)
+
+
+@app.route('/tenth', methods=['GET', 'POST'])
+@login_required
+def edit_tenth():
+    form = TenthForm()
+    if form.validate_on_submit():
+        tenth = Tenth(current_user.id, form.school_name.data, form.cgpa.data, form.board.data, form.year.data)
+        tenth.save()
+        commit()
+        flash('Data updated successfully', 'success')
+        return redirect(url_for('edit_tenth'))
+    tenth = Tenth.load(current_user.id)
+    if tenth is not None:
+        form.school_name.data, form.cgpa.data, form.board.data = tenth.school_name, tenth.cgpa, tenth.board
+        form.year.data = tenth.year
+    return render_template('tenth.html', form=form)
+
+
+@app.route('/twelfth', methods=['GET', 'POST'])
+@login_required
+def edit_twelfth():
+    form = TwelfthForm()
+    if form.validate_on_submit():
+        twelfth = Twelfth(current_user.id, form.school_name.data, form.cgpa.data, form.board.data, form.year.data)
+        twelfth.save()
+        commit()
+        flash('Data updated successfully', 'success')
+        return redirect(url_for('edit_twelfth'))
+    twelfth = Twelfth.load(current_user.id)
+    if twelfth is not None:
+        form.school_name.data, form.cgpa.data, form.board.data = twelfth.school_name, twelfth.cgpa, twelfth.board
+        form.year.data = twelfth.year
+    return render_template('twelfth.html', form=form)
 
 
 @app.route('/sharam')
