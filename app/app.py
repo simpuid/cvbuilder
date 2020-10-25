@@ -5,7 +5,7 @@ from db import *
 from flask_login import LoginManager
 from config import AppConfig
 from models import *
-from routes import home, login, logout, password, student
+from routes import home, login, logout, password, student, tenth, twelfth
 
 initialize('cv_data', 'init.sql')
 populate_users()
@@ -27,6 +27,8 @@ app.register_blueprint(login.blueprint)
 app.register_blueprint(logout.blueprint)
 app.register_blueprint(password.blueprint)
 app.register_blueprint(student.blueprint)
+app.register_blueprint(tenth.blueprint)
+app.register_blueprint(twelfth.blueprint)
 
 
 @app.errorhandler(404)

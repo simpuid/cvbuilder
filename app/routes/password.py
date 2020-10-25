@@ -18,5 +18,6 @@ def password():
         current_user.save()
         commit()
         logout_user()
+        flash('Password change successful. Please login again', 'success')
         return redirect(url_for('login.login'))
     return render_template('password.html', form=form)
