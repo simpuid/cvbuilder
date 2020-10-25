@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, url_for, flash, request, render_template
 from flask_login import current_user, login_user
-from tables import User
+from models import User
 from forms import LoginForm
 from werkzeug.urls import url_parse
 

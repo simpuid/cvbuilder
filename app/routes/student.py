@@ -1,7 +1,7 @@
 from flask import Blueprint, flash, redirect, url_for, render_template
 from flask_login import login_required, current_user
 from forms import StudentForm
-from tables import Student
+from models import Student
 from db import commit
 
 blueprint = Blueprint('student', __name__)

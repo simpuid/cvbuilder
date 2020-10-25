@@ -1,4 +1,4 @@
-from tables import Student
+from models import Student
 from flask_login import login_required, current_user
 from flask import render_template, Blueprint
 

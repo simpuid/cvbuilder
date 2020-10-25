@@ -4,7 +4,7 @@ from flask_bootstrap import Bootstrap
 from db import *
 from flask_login import LoginManager
 from config import AppConfig
-from tables import *
+from models import *
 from routes import home, login, logout, password, student
 
 initialize('cv_data', 'init.sql')
