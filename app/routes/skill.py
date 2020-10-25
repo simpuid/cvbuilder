@@ -25,6 +25,7 @@ def skill():
         if form.add.data:
             if bool(form.new_skill.data):
                 skill_value.add(form.new_skill.data)
+                flash('Skill added', 'success')
                 commit()
             else:
                 flash('Empty skill', 'danger')
