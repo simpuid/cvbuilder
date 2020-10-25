@@ -40,10 +40,9 @@ CREATE TABLE skill_table (
 );
 
 CREATE TABLE professor_table (
-  professor_id int UNIQUE PRIMARY KEY NOT NULL,
+  professor_email varchar(255) UNIQUE PRIMARY KEY NOT NULL,
   professor_name varchar(255) NOT NULL,
   professor_department varchar(255),
-  professor_email varchar(255) UNIQUE NOT NULL,
   professor_phone varchar(255) UNIQUE NOT NULL
 );
 
