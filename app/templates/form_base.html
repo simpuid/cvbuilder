@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% from "snippets.html" import flash_error_success %}
+
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+    <div class="card mt-4">
+        <div class="card-body">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mt-3 ml-5 mr-5">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    {% block nav_breadcrumb %}
+                    {% endblock nav_breadcrumb %}
+                </ol>
+            </nav>
+            <h5 class="text-center mt-5 text-secondary font-weight-bolder text-danger">
+                {% block heading %}{% endblock heading %}</h5>
+            {% block form_data %}
+            {% endblock form_data %}
+        </div>
+    </div>
+{% endblock %}

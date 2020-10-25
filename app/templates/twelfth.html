@@ -1,43 +1,37 @@
-{% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-{% from "snippets.html" import flash_error_success %}
-
+{% extends "form_base.html" %}
 
 {% block title %}
     Edit Twelfth Data
 {% endblock %}
 
-{% block content %}
-    <div class="card mt-5">
-        <div class="card-body">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mt-3 ml-5 mr-5">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="#">Education</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit Twelfth Data</li>
-                </ol>
-            </nav>
-            <h5 class="text-center mt-5 text-secondary">Edit Twelfth Data</h5>
-            <form class="mt-5 ml-5 mr-5" method="post">
-                {{ flash_error_success() }}
-                {{ form.csrf_token() }}
-                <div class="form-group mt-3">
-                    {{ wtf.form_field(form.school_name, class='form-control', maxlength="200") }}
-                </div>
-                <div class="form-group mt-3">
-                    {{ wtf.form_field(form.cgpa, class='form-control', maxlength="5") }}
-                </div>
-                <div class="form-group mt-3">
-                    {{ wtf.form_field(form.board, class='form-control', maxlength="200") }}
-                </div>
-                <div class="form-group mt-3">
-                    {{ wtf.form_field(form.year, class='form-control', maxlength="4") }}
-                </div>
-                <div class="text-center mt-4">
-                    {{ wtf.form_field(form.submit, class='btn btn-md btn-primary') }}
-                </div>
-            </form>
+{% block nav_breadcrumb %}
+    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="#">Education</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit Twelfth Data</li>
+{% endblock nav_breadcrumb %}
+
+{% block heading %}
+    Edit Twelfth Data
+{% endblock heading %}
+
+{% block form_data %}
+    <form class="mt-5 ml-5 mr-5" method="post">
+        {{ flash_error_success() }}
+        {{ form.csrf_token() }}
+        <div class="form-group mt-3">
+            {{ wtf.form_field(form.school_name, class='form-control', maxlength="200") }}
         </div>
-    </div>
-{% endblock %}
+        <div class="form-group mt-3">
+            {{ wtf.form_field(form.cgpa, class='form-control', maxlength="5") }}
+        </div>
+        <div class="form-group mt-3">
+            {{ wtf.form_field(form.board, class='form-control', maxlength="200") }}
+        </div>
+        <div class="form-group mt-3">
+            {{ wtf.form_field(form.year, class='form-control', maxlength="4") }}
+        </div>
+        <div class="text-center mt-4">
+            {{ wtf.form_field(form.submit, class='btn btn-md btn-primary') }}
+        </div>
+    </form>
+{% endblock form_data %}
