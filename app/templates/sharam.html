@@ -1,7 +1,14 @@
 {% extends "base.html" %}
-{% block title %} Bruh {% endblock %}
-{% block heading %} Sharam karo {% endblock %}
-
+{% block title %}
+    Bruh
+{% endblock title %}
 {% block content %}
-<img src="/static/images/sharam.jpg" class="card-img-top" alt="500">
-{% endblock %}
+    <div class="card mt-5">
+        <img src="/static/images/sharam.jpg" class="card-img-top" alt="500">
+        <div class="card-body text-center mt-4">
+            <div class="text-center mt-4">
+                <a class="btn btn-outline-danger rounded-pill" href="/logout">Back to Login</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

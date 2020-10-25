@@ -1,7 +1,14 @@
 {% extends "base.html" %}
-{% block title %} Page not Found {% endblock %}
-{% block heading %} Page not Found {% endblock %}
-
+{% block title %}
+    Page not Found
+{% endblock title %}
 {% block content %}
-<img src="/static/images/404.jpg" class="card-img-top" alt="404">
-{% endblock %}
+    <div class="card mt-3">
+        <img src="/static/images/404.jpg" class="card-img-top" alt="404">
+        <div class="card-body text-center">
+            <div class="text-center mt-4">
+                <a class="btn btn-outline-info rounded-pill" href="/">Go to Home</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
