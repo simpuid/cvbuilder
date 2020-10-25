@@ -21,7 +21,6 @@
         window.onunload = function () {
             null
         };
-
 		</script>
 	</head>
 	<body>
@@ -57,8 +56,16 @@
 			{% endif %}
 			{% endwith %}
 
-			{% block content %}
-			{% endblock content %}
+			<div class="card-body">
+				<div class="shadow-lg p-3 mb-5 bg-white rounded">
+					<div class="jumbotron mt-2">
+						<h1 class="text-center mt-3 text-primary">{% block heading %}{% endblock %}</h1>
+						<br>
+						{% block content %}
+						{% endblock %}
+					</div>
+				</div>
+			</div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 				integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

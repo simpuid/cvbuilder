@@ -1,31 +1,22 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
-{% block title %}
-Login
-{% endblock %}
+{% block title %} Login {% endblock %}
+{% block heading %} Login {% endblock %}
 
 {% block content %}
-<div class="card-body">
-	<div class="shadow-lg p-3 mb-5 bg-white rounded">
-		<div class="jumbotron mt-2">
-			<h1 class="text-center mt-3 text-primary">Login</h1>
-			<form class="mt-5 ml-5 mr-5" method="post">
-				{{ form.csrf_token() }}
-				<div class="form-group mt-4">
-					{{ wtf.form_field(form.username, class='form-control', placeholder='Username', maxlength="32") }}
-				</div>
-				<div class="form-group mt-4">
-					{{ wtf.form_field(form.password, class='form-control', placeholder='Password', maxlength="32") }}
-				</div>
-				<div class="text-center mt-5">
-					{{ wtf.form_field(form.submit, class='btn btn-lg btn-primary') }}
-				</div>
-				<div class="text-center mt-5">
-					<a href="/sharam">Forgot password?</a>
-				</div>
-			</form>
-		</div>
+<form class="mt-5 ml-5 mr-5" method="post">
+	{{ form.csrf_token() }}
+	<div class="form-group mt-4">
+		{{ wtf.form_field(form.username, class='form-control', placeholder='Username', maxlength="32") }}
 	</div>
-</div>
+	<div class="form-group mt-4">
+		{{ wtf.form_field(form.password, class='form-control', placeholder='Password', maxlength="32") }}
+	</div>
+	<div class="text-center mt-5">
+		{{ wtf.form_field(form.submit, class='btn btn-lg btn-primary') }}
+	</div>
+	<div class="text-center mt-5">
+		<a href="/sharam">Forgot password?</a>
+	</div>
+</form>
 {% endblock %}
