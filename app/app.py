@@ -5,7 +5,7 @@ from db import *
 from flask_login import LoginManager
 from config import AppConfig
 from models import *
-from routes import home, login, logout, password, student, tenth, twelfth
+from routes import home, login, logout, password, student, tenth, twelfth, skill
 
 initialize('cv_data', 'init.sql')
 populate_users()
@@ -29,10 +29,12 @@ app.register_blueprint(password.blueprint)
 app.register_blueprint(student.blueprint)
 app.register_blueprint(tenth.blueprint)
 app.register_blueprint(twelfth.blueprint)
+app.register_blueprint(skill.blueprint)
 
 
 @app.errorhandler(404)
 def handle_404(e):
+    app.logger.warning(e.description)
     return render_template("404_error.html"), 404
 
 

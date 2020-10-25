@@ -8,4 +8,4 @@ blueprint = Blueprint('logout', __name__)
 def logout():
     logout_user()
     flash('Successfully logged out', 'success')
-    return redirect(url_for('home.home'))
+    return redirect(url_for('login.login'))

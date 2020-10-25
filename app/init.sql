@@ -33,8 +33,16 @@ CREATE TABLE twelfth_table (
   twelfth_year int NOT NULL
 );
 
+CREATE TABLE skill_table (
+  student_id int NOT NULL,
+  skill_name varchar(255) NOT NULL,
+  PRIMARY KEY (student_id, skill_name)
+);
+
 ALTER TABLE student_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
 ALTER TABLE tenth_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
 ALTER TABLE twelfth_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
+
+ALTER TABLE skill_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);

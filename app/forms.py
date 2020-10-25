@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, SubmitField, IntegerField, StringField, DateField, FloatField
+from wtforms import PasswordField, SubmitField, IntegerField, StringField, DateField, FloatField, Form, FieldList, \
+    FormField
 from wtforms.validators import DataRequired, EqualTo, Email, NumberRange
 import datetime
 
@@ -46,3 +47,15 @@ class TwelfthForm(FlaskForm):
                         validators=[DataRequired(), NumberRange(min=1947, max=datetime.datetime.now().year,
                                                                 message='Invalid Year')])
     submit = SubmitField('Submit')
+
+
+class SkillForm(Form):
+    skill_name = StringField('Skill')
+    save = SubmitField('Save')
+    delete = SubmitField('Delete')
+
+
+class SkillListForm(FlaskForm):
+    skill_list = FieldList(FormField(SkillForm))
+    new_skill = StringField('Skill')
+    add = SubmitField('Add')

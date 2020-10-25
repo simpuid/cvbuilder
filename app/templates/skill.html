@@ -1,0 +1,22 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FieldList Example</title>
+</head>
+<body>
+<form method="POST" action="">
+{% with messages = get_flashed_messages() %}
+    {{ messages[0] }}
+{% endwith %}
+    {{ form.hidden_tag() }}
+    <br/>
+    {% for nested in form.skill_list %}
+        {{ nested }}
+    {% endfor %}
+    {{ form.new_skill }}
+    {{ form.add }}
+</form>
+</body>
+</html>
