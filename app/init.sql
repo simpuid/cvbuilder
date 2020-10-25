@@ -39,6 +39,14 @@ CREATE TABLE skill_table (
   PRIMARY KEY (student_id, skill_name)
 );
 
+CREATE TABLE professor_table (
+  professor_id int UNIQUE PRIMARY KEY NOT NULL,
+  professor_name varchar(255) NOT NULL,
+  professor_department varchar(255),
+  professor_email varchar(255) UNIQUE NOT NULL,
+  professor_phone varchar(255) UNIQUE NOT NULL
+);
+
 ALTER TABLE student_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
 ALTER TABLE tenth_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);

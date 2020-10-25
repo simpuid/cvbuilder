@@ -42,10 +42,13 @@ def execute_file(path: str):
 def initialize(name: str, path: str):
     global connection
     global cursor
+    init = False
     if not check_database(name):
         execute_file(path)
         commit()
+        init = True
     connection.close()
     db_config['database'] = name
     connection = sql.connect(**db_config)
     cursor = connection.cursor(dictionary=True)
+    return init

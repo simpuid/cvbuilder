@@ -9,6 +9,7 @@ from routes import home, login, logout, password, student, tenth, twelfth, skill
 import markdown
 initialize('cv_data', 'init.sql')
 populate_users()
+populate_professors()
 
 app = Flask(__name__)
 app.config.from_object(AppConfig)
