@@ -6,11 +6,12 @@ blueprint = Blueprint('home', __name__)
 
 
 @blueprint.route('/')
-@login_required
 def home():
-    student = Student.load(current_user.id)
-    if student is not None:
-        name = student.name
-    else:
-        name = current_user.id
+    name = ""
+    if current_user.is_authenticated:
+        student = Student.load(current_user.id)
+        if student is not None:
+            name = student.name
+        else:
+            name = current_user.id
     return render_template('home.html', name=name)

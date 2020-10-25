@@ -1,31 +1,26 @@
 {% extends "base.html" %}
 {% block title %}
-    Home
+Home
 {% endblock title %}
 {% block content %}
-    <div class="card mt-5">
-        <div class="card-body">
-            <nav class="navbar navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded">
-                <a class="navbar-brand text-primary">CV Builder</a>
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="/password">Change Password</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="/logout">Logout</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                <div class="jumbotron mt-2">
-                    <h1 class="display-4">Hello, {{ name }}!</h1>
-                    <p class="lead">Welcome to CV Builder, the most powerful resume builder.
-                        Everything you need to make your next career move.</p>
-                    <hr class="my-4">
-                    <p>The #1 resume & CV builder, used by PPR to get into IITR.</p>
-                    <a class="btn btn-primary btn-lg" href="/dashboard" role="button">Go to dashboard</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="card-body">
+	<div class="shadow-lg p-3 mb-5 bg-white rounded">
+		<div class="jumbotron mt-2">
+			<h1 class="text-center mt-3 text-primary">Home</h1>
+			<br>
+			{% if current_user.is_authenticated %}
+			<h1 class="display-4">Hello, {{ name }}!</h1>
+			<p class="lead">Welcome to CV Builder, the most powerful resume builder.
+				Everything you need to make your next career move.</p>
+			<hr class="my-4">
+			<p>The #1 resume & CV builder, used by PPR to get into IITR.</p>
+			<a class="btn btn-primary btn-lg" href="/dashboard" role="button">Go to dashboard</a>
+			{% else %}
+			<h1 class="display-4">Welcome!</h1>
+			<p class="lead">Login to continue</p>
+			<a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
 {% endblock content %}
