@@ -46,6 +46,12 @@ CREATE TABLE professor_table (
   professor_phone varchar(255) UNIQUE NOT NULL
 );
 
+CREATE TABLE achievement_table (
+  student_id int NOT NULL,
+  achievement_description varchar(512) NOT NULL,
+  PRIMARY KEY (student_id, achievement_description)
+);
+
 ALTER TABLE student_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
 ALTER TABLE tenth_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
@@ -53,3 +59,5 @@ ALTER TABLE tenth_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user
 ALTER TABLE twelfth_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
 ALTER TABLE skill_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
+
+ALTER TABLE achievement_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);

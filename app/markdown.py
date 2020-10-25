@@ -5,6 +5,7 @@ from models import *
 
 blueprint = Blueprint('md', __name__)
 
+
 @blueprint.route('/md')
 @login_required
 def md():
@@ -12,7 +13,7 @@ def md():
     student = Student.load(current_user.id)
     tenth = Tenth.load(current_user.id)
     twelfth = Twelfth.load(current_user.id)
-    skill= Skill.load(current_user.id)
+    skill = Skill.load(current_user.id)
     mdfile.new_header(level=1, title='Personal Detail : ')
     if student is not None:
         mdfile.write("Enrollment : " + str(student.id))
@@ -37,8 +38,8 @@ def md():
     mdfile.new_table(columns=4, rows=co, text=ed_dt, text_align='center')
     mdfile.new_header(level=1, title='Skill : ')
     if skill is not None:
-        sk_d=skill.skill_list
-        mdfile.new_list(items=sk_d,marked_with='1')
+        sk_d = skill.skill_list
+        mdfile.new_list(items=sk_d, marked_with='1')
 
     mdfile.new_table_of_contents(table_title='Contents', depth=2)
     mdfile.create_md_file()
