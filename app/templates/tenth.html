@@ -1,48 +1,33 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
-{% block title %}
-    Edit Tenth Data
-{% endblock %}
+{% block title %} Edit Tenth Data {% endblock %}
+{% block heading %} Edit Tenth Data {% endblock %}
 
 {% block content %}
-    <div class="card mt-5">
-        <div class="card-body">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mt-3 ml-5 mr-5">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="#">Education</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit Tenth Data</li>
-                </ol>
-            </nav>
-            <h5 class="text-center mt-5 text-secondary">Edit Tenth Data</h5>
-            <form class="mt-5 ml-5 mr-5" method="post">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% set category, message = messages[0] %}
-                        <div class="alert alert-{{ category if category != 'message' else 'danger' }}" role="alert">
-                            {{ message }}
-                        </div>
-                    {% endif %}
-                {% endwith %}
-                {{ form.csrf_token() }}
-                <div class="form-group mt-3">
-                    {{ wtf.form_field(form.school_name, class='form-control', maxlength="200") }}
-                </div>
-                <div class="form-group mt-3">
-                    {{ wtf.form_field(form.cgpa, class='form-control', maxlength="5") }}
-                </div>
-                <div class="form-group mt-3">
-                    {{ wtf.form_field(form.board, class='form-control', maxlength="200") }}
-                </div>
-                <div class="form-group mt-3">
-                    {{ wtf.form_field(form.year, class='form-control', maxlength="4") }}
-                </div>
-                <div class="text-center mt-4">
-                    {{ wtf.form_field(form.submit, class='btn btn-md btn-primary') }}
-                </div>
-            </form>
-        </div>
-    </div>
+<form class="mt-5 ml-5 mr-5" method="post">
+	{% with messages = get_flashed_messages(with_categories=true) %}
+	{% if messages %}
+	{% set category, message = messages[0] %}
+	<div class="alert alert-{{ category if category != 'message' else 'danger' }}" role="alert">
+		{{ message }}
+	</div>
+	{% endif %}
+	{% endwith %}
+	{{ form.csrf_token() }}
+	<div class="form-group mt-3">
+		{{ wtf.form_field(form.school_name, class='form-control', maxlength="200") }}
+	</div>
+	<div class="form-group mt-3">
+		{{ wtf.form_field(form.cgpa, class='form-control', maxlength="5") }}
+	</div>
+	<div class="form-group mt-3">
+		{{ wtf.form_field(form.board, class='form-control', maxlength="200") }}
+	</div>
+	<div class="form-group mt-3">
+		{{ wtf.form_field(form.year, class='form-control', maxlength="4") }}
+	</div>
+	<div class="text-center mt-4">
+		{{ wtf.form_field(form.submit, class='btn btn-md btn-primary') }}
+	</div>
+</form>
 {% endblock %}
