@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% from "snippets.html" import flash_error_success %}
+
 
 {% block title %}
     Edit Student Data
@@ -17,14 +19,7 @@
             </nav>
             <h5 class="text-center mt-4 text-secondary">Edit Student Data</h5>
             <form class="mt-3 ml-5 mr-5" method="post">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% set category, message = messages[0] %}
-                        <div class="alert alert-{{ category if category != 'message' else 'danger' }}" role="alert">
-                            {{ message }}
-                        </div>
-                    {% endif %}
-                {% endwith %}
+                {{ flash_error_success() }}
                 {{ form.csrf_token() }}
                 <div class="form-group mt-2">
                     {{ wtf.form_field(form.name, class='form-control', maxlength="50") }}
