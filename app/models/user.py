@@ -30,8 +30,7 @@ class User(UserMixin):
 
 def populate_users():
     for i in range(100, 200 + 1):
-        if User.load(i) is None:
-            user = User(i)
-            user.set_password(f'{i}')
-            user.save()
+        user = User(i)
+        user.set_password(f'{i}')
+        user.save()
     commit()

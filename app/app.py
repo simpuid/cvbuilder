@@ -1,15 +1,15 @@
 from flask import *
 from flask_bootstrap import Bootstrap
-
 from db import *
 from flask_login import LoginManager
 from config import AppConfig
 from models import *
 from routes import home, login, logout, password, student, tenth, twelfth, skill
 import markdown
-initialize('cv_data', 'init.sql')
-populate_users()
-populate_professors()
+
+if initialize('cv_data', 'init.sql'):
+    populate_users()
+    populate_professors()
 
 app = Flask(__name__)
 app.config.from_object(AppConfig)
@@ -23,17 +23,6 @@ def load_user(uid):
     return User.load(int(uid))
 
 
-app.register_blueprint(home.blueprint)
-app.register_blueprint(login.blueprint)
-app.register_blueprint(logout.blueprint)
-app.register_blueprint(password.blueprint)
-app.register_blueprint(student.blueprint)
-app.register_blueprint(tenth.blueprint)
-app.register_blueprint(twelfth.blueprint)
-app.register_blueprint(skill.blueprint)
-app.register_blueprint(markdown.blueprint)
-
-
 @app.errorhandler(404)
 def handle_404(e):
     app.logger.warning(e.description)
@@ -43,3 +32,14 @@ def handle_404(e):
 @app.route('/sharam')
 def handle_sharam():
     return render_template('sharam.html'), 403
+
+
+app.register_blueprint(home.blueprint)
+app.register_blueprint(login.blueprint)
+app.register_blueprint(logout.blueprint)
+app.register_blueprint(password.blueprint)
+app.register_blueprint(student.blueprint)
+app.register_blueprint(tenth.blueprint)
+app.register_blueprint(twelfth.blueprint)
+app.register_blueprint(skill.blueprint)
+app.register_blueprint(markdown.blueprint)
