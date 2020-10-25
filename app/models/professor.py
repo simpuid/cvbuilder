@@ -19,8 +19,8 @@ class Professor:
                 (self.email, self.name, self.department, self.phone))
 
     @staticmethod
-    def load(uid: int):
-        execute('SELECT * FROM professor_table WHERE professor_id = %s', (uid,))
+    def load(email: str):
+        execute('SELECT * FROM professor_table WHERE professor_email = %s', (email,))
         data = fetch()
         if len(data) == 0:
             return None
