@@ -4,6 +4,7 @@ from db import *
 from flask_login import LoginManager
 from config import AppConfig
 from models import *
+import download
 from routes import home, login, logout, password, student, tenth, twelfth, skill, achievement, language, \
     extra_curricular, reference, sgpa
 
@@ -46,4 +47,5 @@ app.register_blueprint(achievement.blueprint)
 app.register_blueprint(language.blueprint)
 app.register_blueprint(extra_curricular.blueprint)
 app.register_blueprint(reference.blueprint)
+app.register_blueprint(download.blueprint)
 app.register_blueprint(sgpa.blueprint)
