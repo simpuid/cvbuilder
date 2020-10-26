@@ -4,7 +4,8 @@ from db import *
 from flask_login import LoginManager
 from config import AppConfig
 from models import *
-from routes import home, login, logout, password, student, tenth, twelfth, skill, achievement, language
+from routes import home, login, logout, password, student, tenth, twelfth, skill, achievement, language, \
+    extra_curricular
 import markdown
 
 if initialize('cv_data', 'init.sql'):
@@ -45,3 +46,4 @@ app.register_blueprint(skill.blueprint)
 app.register_blueprint(markdown.blueprint)
 app.register_blueprint(achievement.blueprint)
 app.register_blueprint(language.blueprint)
+app.register_blueprint(extra_curricular.blueprint)

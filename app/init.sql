@@ -69,6 +69,16 @@ CREATE TABLE language_table
     PRIMARY KEY (student_id, language_name)
 );
 
+CREATE TABLE extra_curricular_table
+(
+    student_id                   int          NOT NULL,
+    extra_curricular_title       varchar(128) NOT NULL,
+    extra_curricular_start_date  date         NOT NULL,
+    extra_curricular_end_date    date         NOT NULL,
+    extra_curricular_description varchar(512),
+    PRIMARY KEY (student_id, extra_curricular_title, extra_curricular_start_date, extra_curricular_end_date)
+);
+
 ALTER TABLE student_table
     ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
@@ -86,3 +96,7 @@ ALTER TABLE achievement_table
 
 ALTER TABLE language_table
     ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
+
+ALTER TABLE extra_curricular_table
+    ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
+

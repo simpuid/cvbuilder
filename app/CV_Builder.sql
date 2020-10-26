@@ -52,14 +52,7 @@ CREATE TABLE internship_table (
   PRIMARY KEY (student_id, internship_start_date, internship_end_date)
 );
 
-CREATE TABLE extra_curricular_table (
-  student_id int NOT NULL,
-  extra_curricular_title varchar(255) NOT NULL,
-  extra_curricular_start_date date NOT NULL,
-  extra_curricular_end_date date NOT NULL,
-  extra_curricular_description varchar(255),
-  PRIMARY KEY (student_id, extra_curricular_title, extra_curricular_start_date, extra_curricular_end_date)
-);
+
 
 
 
@@ -79,5 +72,4 @@ ALTER TABLE sgpa_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_
 
 ALTER TABLE internship_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
-ALTER TABLE extra_curricular_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
