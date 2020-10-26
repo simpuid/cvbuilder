@@ -8,22 +8,19 @@ class Skill:
 
     def update(self, index, skill_name):
         if skill_name != self.skill_list[index]:
-            execute('DELETE FROM skill_table WHERE student_id = %s AND skill_name = %s',
-                    (self.id, self.skill_list[index]))
-            if skill_name not in self.skill_list:
-                execute('INSERT INTO skill_table VALUES (%s, %s)', (self.id, skill_name))
-                self.skill_list[index] = skill_name
-            else:
-                del self.skill_list[index]
+            self.delete(index)
+        self.add(skill_name)
 
     def delete(self, index):
         execute('DELETE FROM skill_table WHERE student_id = %s AND skill_name = %s', (self.id, self.skill_list[index]))
-        del self.skill_list[index]
 
     def add(self, skill_name):
-        if skill_name not in self.skill_list:
-            execute('INSERT INTO skill_table VALUES (%s, %s)', (self.id, skill_name))
-            self.skill_list.append(skill_name)
+        execute("""INSERT INTO skill_table
+                                VALUES (%s, %s)
+                                ON DUPLICATE KEY UPDATE
+                                student_id = VALUES(student_id),
+                                skill_name = VALUES(skill_name)""",
+                (self.id, skill_name))
 
     @staticmethod
     def load(uid: int):
