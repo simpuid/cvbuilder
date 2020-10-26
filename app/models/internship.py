@@ -21,7 +21,7 @@ class Internship:
                             internship_end_date = %s""",
                 (self.id, self.intern_list[index]['start_date'], self.intern_list[index]['end_date']))
 
-    def add(self, intern_list):
+    def add(self, intern_dict):
         execute("""INSERT INTO internship_table
                                 VALUES (%s, %s, %s, %s, %s, %s)
                                 ON DUPLICATE KEY UPDATE
@@ -31,8 +31,8 @@ class Internship:
                                 internship_organization = VALUES(internship_organization),
                                 internship_designation = VALUES(internship_designation),
                                 internship_description = VALUES(internship_description)""",
-                (self.id, intern_list['start_date'], intern_list['end_date'], intern_list['organization'],
-                 intern_list['designation'], intern_list['description']))
+                (self.id, intern_dict['start_date'], intern_dict['end_date'], intern_dict['organization'],
+                 intern_dict['designation'], intern_dict['description']))
 
     @staticmethod
     def load(uid: int):

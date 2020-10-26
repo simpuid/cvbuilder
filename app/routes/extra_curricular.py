@@ -1,7 +1,7 @@
 from collections import namedtuple
 
 from flask_login import login_required, current_user
-from flask import render_template, Blueprint, flash, redirect, url_for, app
+from flask import render_template, Blueprint, flash, redirect, url_for
 
 from forms import ECListForm
 from models import ExtraCurricular

@@ -1,0 +1,99 @@
+{% extends "form_base.html" %}
+
+{% block title %}
+    Internship
+{% endblock title %}
+
+{% block nav_breadcrumb %}
+    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit Internship Data</li>
+{% endblock nav_breadcrumb %}
+
+{% block heading %}
+    Edit Internship Data
+{% endblock heading %}
+
+{% block form_data %}
+    <form class="mt-5 ml-5 mr-5" method="POST">
+        {{ flash_error_success() }}
+        {{ form.hidden_tag() }}
+        {% for subform in form.intern_list %}
+            <div class="row mt-4">
+                <div class="col-1 mt-3 text-center font-weight-bold text-info">
+                    <br><br>
+                    {{ loop.index|string+'.' }}
+                </div>
+                <div class="col card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                {{ wtf.form_field(subform.organization, class='form-control', maxlength="200") }}
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col">
+                                {{ wtf.form_field(subform.designation, class='form-control', maxlength="200") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{ wtf.form_field(subform.start, class='form-control') }}
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col">
+                                {{ wtf.form_field(subform.end, class='form-control') }}
+                            </div>
+                        </div>
+                        {{ wtf.form_field(subform.text_description, class='form-control', maxlength="500") }}
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col text-center mt-3">
+                                {{ wtf.form_field(subform.save, class='btn btn-md btn-outline-success btn-block') }}
+                            </div>
+                            <div class="col-3"></div>
+                            <div class="col text-center mt-3">
+                                {{ wtf.form_field(subform.delete, class='btn btn-md btn-outline-danger btn-block') }}
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row mt-4">
+            <div class="col-1 mt-3 text-center font-weight-bold text-info">
+                <br><br>
+                New
+            </div>
+            <div class="col card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            {{ wtf.form_field(form.organization, class='form-control', maxlength="200") }}
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col">
+                            {{ wtf.form_field(form.designation, class='form-control', maxlength="200") }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ wtf.form_field(form.start, class='form-control') }}
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col">
+                            {{ wtf.form_field(form.end, class='form-control') }}
+                        </div>
+                    </div>
+                    {{ wtf.form_field(form.text_description, class='form-control', maxlength="500") }}
+                    <div class="row">
+                        <div class="col-5"></div>
+                        <div class="col text-center mt-3">
+                            {{ wtf.form_field(form.add, class='btn btn-md btn-outline-primary btn-block') }}
+                        </div>
+                        <div class="col-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock form_data %}

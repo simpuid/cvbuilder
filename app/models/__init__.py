@@ -9,6 +9,7 @@ from .language import Language
 from .extra_curricular import ExtraCurricular
 from .reference import Reference
 from .sgpa import SGPA
+from .internship import Internship
 
 __all__ = ["User", "populate_users", "Student", "Tenth", "Twelfth", "Skill", "Professor", "populate_professors",
-           "Achievement", "Language", "ExtraCurricular", "Reference", "SGPA"]
+           "Achievement", "Language", "ExtraCurricular", "Reference", "SGPA", "Internship"]

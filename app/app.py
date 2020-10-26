@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from config import AppConfig
 from models import *
 from routes import home, login, logout, password, student, tenth, twelfth, skill, achievement, language, \
-    extra_curricular, reference, sgpa
+    extra_curricular, reference, sgpa, internship
 
 if initialize('cv_data', 'init.sql'):
     populate_users()
@@ -47,3 +47,4 @@ app.register_blueprint(language.blueprint)
 app.register_blueprint(extra_curricular.blueprint)
 app.register_blueprint(reference.blueprint)
 app.register_blueprint(sgpa.blueprint)
+app.register_blueprint(internship.blueprint)
