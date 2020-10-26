@@ -96,6 +96,12 @@ CREATE TABLE sgpa_table (
   PRIMARY KEY (student_id, sgpa_semester)
 );
 
+CREATE TABLE reference_table (
+  student_id int NOT NULL,
+  professor_email varchar(255) NOT NULL,
+  PRIMARY KEY (student_id, professor_email)
+);
+
 ALTER TABLE student_table
     ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
@@ -122,3 +128,9 @@ ALTER TABLE internship_table
 
 ALTER TABLE sgpa_table
     ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
+
+ALTER TABLE reference_table
+    ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
+
+ALTER TABLE reference_table
+    ADD FOREIGN KEY (professor_email) REFERENCES professor_table (professor_email);
