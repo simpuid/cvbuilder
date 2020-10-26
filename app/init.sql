@@ -79,27 +79,30 @@ CREATE TABLE extra_curricular_table
     PRIMARY KEY (student_id, extra_curricular_title, extra_curricular_start_date, extra_curricular_end_date)
 );
 
-CREATE TABLE internship_table (
-  student_id int NOT NULL,
-  internship_start_date date NOT NULL,
-  internship_end_date date NOT NULL,
-  internship_organization varchar(255),
-  internship_designation varchar(255),
-  internship_description varchar(255),
-  PRIMARY KEY (student_id, internship_start_date, internship_end_date)
+CREATE TABLE internship_table
+(
+    student_id              int          NOT NULL,
+    internship_start_date   date         NOT NULL,
+    internship_end_date     date         NOT NULL,
+    internship_organization varchar(255) NOT NULL,
+    internship_designation  varchar(255) NOT NULL,
+    internship_description  varchar(512),
+    PRIMARY KEY (student_id, internship_start_date, internship_end_date)
 );
 
-CREATE TABLE sgpa_table (
-  student_id int NOT NULL,
-  sgpa_semester int NOT NULL,
-  sgpa_value float,
-  PRIMARY KEY (student_id, sgpa_semester)
+CREATE TABLE sgpa_table
+(
+    student_id    int   NOT NULL,
+    sgpa_semester int   NOT NULL,
+    sgpa_value    float NOT NULL,
+    PRIMARY KEY (student_id, sgpa_semester)
 );
 
-CREATE TABLE reference_table (
-  student_id int NOT NULL,
-  professor_email varchar(255) NOT NULL,
-  PRIMARY KEY (student_id, professor_email)
+CREATE TABLE reference_table
+(
+    student_id      int          NOT NULL,
+    professor_email varchar(255) NOT NULL,
+    PRIMARY KEY (student_id, professor_email)
 );
 
 ALTER TABLE student_table

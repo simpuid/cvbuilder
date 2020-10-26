@@ -7,6 +7,7 @@ from .student import StudentForm
 from .achievement import AchievementListForm
 from .language import LanguageListForm
 from .extra_curricular import ECListForm
+from .reference import ReferenceListForm
 
 __all__ = ["LoginForm", "PasswordForm", "SkillListForm", "TenthForm", "TwelfthForm", "StudentForm",
-           "AchievementListForm", "LanguageListForm", "ECListForm"]
+           "AchievementListForm", "LanguageListForm", "ECListForm", "ReferenceListForm"]

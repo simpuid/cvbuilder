@@ -7,6 +7,7 @@ from .professor import Professor, populate_professors
 from .achievement import Achievement
 from .language import Language
 from .extra_curricular import ExtraCurricular
+from .reference import Reference
 
 __all__ = ["User", "populate_users", "Student", "Tenth", "Twelfth", "Skill", "Professor", "populate_professors",
-           "Achievement", "Language", "ExtraCurricular"]
+           "Achievement", "Language", "ExtraCurricular", "Reference"]

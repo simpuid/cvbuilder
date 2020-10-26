@@ -1,26 +1,9 @@
-CREATE SCHEMA cv_data;
-USE cv_data;
-
-CREATE TABLE professor_table (
-  professor_id int UNIQUE PRIMARY KEY NOT NULL,
-  professor_name varchar(255) NOT NULL,
-  professor_department varchar(255),
-  professor_email varchar(255) UNIQUE NOT NULL,
-  professor_phone varchar(255) UNIQUE NOT NULL
-);
-
 CREATE TABLE project_table (
   project_id int UNIQUE PRIMARY KEY NOT NULL,
   project_title varchar(255) NOT NULL,
   project_description varchar(255),
   project_start_date date,
   project_end_date date
-);
-
-CREATE TABLE reference_table (
-  student_id int NOT NULL,
-  professor_id int NOT NULL,
-  PRIMARY KEY (student_id, professor_id)
 );
 
 CREATE TABLE project_student_relation_table (
@@ -51,14 +34,6 @@ CREATE TABLE internship_table (
   internship_description varchar(255),
   PRIMARY KEY (student_id, internship_start_date, internship_end_date)
 );
-
-
-
-
-
-ALTER TABLE reference_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
-
-ALTER TABLE reference_table ADD FOREIGN KEY (professor_id) REFERENCES professor_table (professor_id);
 
 ALTER TABLE project_student_relation_table ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
