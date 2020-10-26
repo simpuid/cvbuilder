@@ -1,0 +1,75 @@
+{% extends "form_base.html" %}
+
+{% block title %}
+    SGPA
+{% endblock title %}
+
+{% block nav_breadcrumb %}
+    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="#">Education</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit SGPA Data</li>
+{% endblock nav_breadcrumb %}
+
+{% block heading %}
+    Edit SGPA Data
+{% endblock heading %}
+
+{% block form_data %}
+    <style>
+        label {
+            display: none;
+        }
+    </style>
+
+    <form class="mt-5 ml-5 mr-5" method="POST">
+        {{ flash_error_success() }}
+        {{ form.hidden_tag() }}
+        <div class="row mt-4">
+            <div class="col-1 font-weight-bold text-info mt-2 text-center">
+                Index
+            </div>
+            <div class="col-4 font-weight-bold text-info mt-2 text-center">
+                Semester
+            </div>
+            <div class="col-4 font-weight-bold text-info mt-2 text-center">
+                SGPA
+            </div>
+            <div class="col font-weight-bold text-info mt-2 text-center">
+                Actions
+            </div>
+        </div>
+        {% for subform in form.sg_list %}
+            <div class="row mt-3">
+                <div class="col-1 font-weight-bold text-info mt-2 text-center">
+                    {{ loop.index|string + '.' }}
+                </div>
+                <div class="col-4">
+                    {{ wtf.form_field(subform.semester, class='form-control', maxlength="1") }}
+                </div>
+                <div class="col-4">
+                    {{ wtf.form_field(subform.sgpa, class='form-control', maxlength="5") }}
+                </div>
+                <div class="col text-center">
+                    {{ wtf.form_field(subform.save, class='btn btn-md btn-outline-success btn-block') }}
+                </div>
+                <div class="col text-center">
+                    {{ wtf.form_field(subform.delete, class='btn btn-md btn-outline-danger btn-block') }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row mt-3">
+            <div class="col-1 font-weight-bold text-info mt-2 text-center">
+                New
+            </div>
+            <div class="col-4">
+                {{ wtf.form_field(form.semester, class='form-control', maxlength="1") }}
+            </div>
+            <div class="col-4">
+                {{ wtf.form_field(form.sgpa, class='form-control', maxlength="5") }}
+            </div>
+            <div class="col text-center">
+                {{ wtf.form_field(form.add, class='btn btn-md btn-outline-primary btn-block') }}
+            </div>
+        </div>
+    </form>
+{% endblock form_data %}

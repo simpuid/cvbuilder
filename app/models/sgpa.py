@@ -3,7 +3,7 @@ from typing import List
 from db import execute, fetch
 
 
-class Sgpa:
+class SGPA:
     def __init__(self, uid: int, sg_list: List[dict]):
         self.id = uid
         self.sg_list = sg_list
@@ -33,7 +33,7 @@ class Sgpa:
         execute('SELECT * FROM sgpa_table WHERE student_id = %s', (uid,))
         data = fetch()
         if len(data) == 0:
-            return Sgpa(uid, [])
+            return SGPA(uid, [])
         entry_list = []
         for entry in data:
             entry_dict = {
@@ -41,4 +41,4 @@ class Sgpa:
                 'value': entry['sgpa_value'],
             }
             entry_list.append(entry_dict)
-        return Sgpa(uid, entry_list)
+        return SGPA(uid, entry_list)
