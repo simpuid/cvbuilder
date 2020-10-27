@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from config import AppConfig
 from models import *
 from routes import home, login, logout, password, student, tenth, twelfth, skill, achievement, language, \
-    extra_curricular
+    extra_curricular, reference, sgpa, internship, generate, download, dashboard
 from generator import generate_pdf
 
 if initialize('cv_data', 'init.sql'):
@@ -47,3 +47,10 @@ app.register_blueprint(generate_pdf.blueprint)
 app.register_blueprint(achievement.blueprint)
 app.register_blueprint(language.blueprint)
 app.register_blueprint(extra_curricular.blueprint)
+app.register_blueprint(reference.blueprint)
+app.register_blueprint(download.blueprint)
+app.register_blueprint(sgpa.blueprint)
+app.register_blueprint(internship.blueprint)
+app.register_blueprint(generate.blueprint)
+app.register_blueprint(download.blueprint)
+app.register_blueprint(dashboard.blueprint)

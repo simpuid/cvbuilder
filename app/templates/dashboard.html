@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "snippets.html" import flash_error_success %}
+{% block title %}
+    Dashboard
+{% endblock title %}
+{% block content %}
+    <div class="card mt-5">
+        <div class="card-body">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand text-primary" href="/">CV Builder</a>
+                <div class="mr-auto"></div>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="/generate">Generate</a>
+                <a class="btn btn-outline-success my-2 my-sm-0 ml-3 {{ 'disabled' if download_disabled }}"
+                   href="/download">Download</a>
+            </nav>
+            <div class="mt-4">
+                {{ flash_error_success() }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
