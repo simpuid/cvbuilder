@@ -15,4 +15,4 @@ def download():
         response.headers.set('Content-Disposition', 'attachment', filename='resume.pdf')
         return response
     flash('No generated resume found', 'danger')
-    return redirect(url_for('home.home'))
+    return redirect(url_for('dashboard.dashboard'))

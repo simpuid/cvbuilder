@@ -18,4 +18,4 @@ def generate():
     resume = Resume(current_user.id, read_file('sample.pdf'))
     resume.save()
     commit()
-    return redirect(url_for('home.home'))
+    return redirect(url_for('dashboard.dashboard'))
