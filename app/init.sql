@@ -11,7 +11,7 @@ CREATE TABLE student_table
 (
     student_id     int UNIQUE PRIMARY KEY NOT NULL,
     student_name   varchar(256)           NOT NULL,
-    student_phone  int UNIQUE             NOT NULL,
+    student_phone  bigint UNIQUE          NOT NULL,
     student_email  varchar(256) UNIQUE    NOT NULL,
     student_dob    date                   NOT NULL,
     student_branch varchar(256)           NOT NULL,
