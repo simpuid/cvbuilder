@@ -1,21 +1,32 @@
 from flask_login import login_required, current_user
-from flask import Blueprint, redirect, url_for
+from flask import Blueprint, Response
 from models import Resume
 from db import commit
+from generator import render_latex
+
+import subprocess
+import os
 
 blueprint = Blueprint('generate', __name__)
-
-
-def read_file(path: str):
-    with open(path, 'rb') as file:
-        data = file.read()
-    return data
 
 
 @blueprint.route('/generate')
 @login_required
 def generate():
-    resume = Resume(current_user.id, read_file('sample.pdf'))
+    content = render_latex(current_user.id)
+    xtx = f'/output/{current_user.id}.xtx'
+    pdf = f'/output/{current_user.id}.pdf'
+    with open(xtx, 'w') as file:
+        file.write(content)
+    subprocess.check_call(['xelatex', '-output-directory=/output/', xtx], cwd='/app/generator/')
+    with open(pdf, 'rb') as file:
+        data = file.read()
+    resume = Resume(current_user.id, data)
     resume.save()
     commit()
-    return redirect(url_for('dashboard.dashboard'))
+    junk = [xtx, pdf, f'/output/{current_user.id}.aux', f'/output/{current_user.id}.log',
+            f'/output/{current_user.id}.out', ]
+    for path in junk:
+        if os.path.isfile(path):
+            os.remove(path)
+    return Response(content, mimetype='text/plain')
