@@ -4,8 +4,7 @@ from db import *
 from flask_login import LoginManager
 from config import AppConfig
 from models import *
-from routes import home, login, logout, password, student, tenth, twelfth, skill, achievement, language, \
-    extra_curricular, reference, sgpa, internship, generate, download, dashboard
+from routes import *
 
 if initialize('cv_data', 'init.sql'):
     populate_users()

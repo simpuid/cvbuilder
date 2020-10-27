@@ -1,7 +1,5 @@
 .idea/
-db/
 venv/
-
 __pycache__/
-
 output/
+sample.pdf
