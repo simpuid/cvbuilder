@@ -1,12 +1,12 @@
 from flask import *
 from flask_bootstrap import Bootstrap
 from db import *
-from flask_login import LoginManager
+from flask_login import LoginManager, login_required
 from config import AppConfig
 from models import *
 import download
 from routes import home, login, logout, password, student, tenth, twelfth, skill, achievement, language, \
-    extra_curricular, reference, sgpa, internship
+    extra_curricular, reference, sgpa, internship, generate, download
 
 if initialize('cv_data', 'init.sql'):
     populate_users()
@@ -50,3 +50,5 @@ app.register_blueprint(reference.blueprint)
 app.register_blueprint(download.blueprint)
 app.register_blueprint(sgpa.blueprint)
 app.register_blueprint(internship.blueprint)
+app.register_blueprint(generate.blueprint)
+app.register_blueprint(download.blueprint)

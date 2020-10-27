@@ -105,6 +105,12 @@ CREATE TABLE reference_table
     PRIMARY KEY (student_id, professor_email)
 );
 
+CREATE TABLE resume_table
+(
+    student_id     int UNIQUE PRIMARY KEY NOT NULL,
+    resume_data blob NOT NULL
+);
+
 ALTER TABLE student_table
     ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
@@ -137,3 +143,6 @@ ALTER TABLE reference_table
 
 ALTER TABLE reference_table
     ADD FOREIGN KEY (professor_email) REFERENCES professor_table (professor_email);
+
+ALTER TABLE resume_table
+    ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
