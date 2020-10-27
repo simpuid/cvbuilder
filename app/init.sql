@@ -108,7 +108,7 @@ CREATE TABLE reference_table
 CREATE TABLE resume_table
 (
     student_id  int UNIQUE PRIMARY KEY NOT NULL,
-    resume_data mediumblob                   NOT NULL
+    resume_data mediumblob             NOT NULL
 );
 
 ALTER TABLE student_table
