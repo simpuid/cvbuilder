@@ -1,0 +1,351 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% -*- coding: UTF-8; -*-
+% vim: set fenc=utf-8
+
+
+
+
+\documentclass[letterpaper,MMMyyyy,nonstopmode]{simpleresumecv}
+% Class options:
+% a4paper, letterpaper, nonstopmode, draftmode
+% MMMyyyy, ddMMMyyyy, MMMMyyyy, ddMMMMyyyy, yyyyMMdd, yyyyMM, yyyy
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREAMBLE.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% CV Info (to be customized).
+\newcommand{\CVAuthor}{\VAR{student.name}}
+\newcommand{\CVTitle}{\VAR{student.name} Resume}
+\newcommand{\CVNote}{CV compiled on {\today}}
+\newcommand{\CVWebpage}{http://www.example.com/~johndoe}
+
+% PDF settings and properties.
+\hypersetup{
+pdftitle={\CVTitle},
+pdfauthor={\CVAuthor},
+pdfsubject={\CVWebpage},
+pdfcreator={XeLaTeX},
+pdfproducer={},
+pdfkeywords={},
+unicode=true,
+bookmarks=true,
+bookmarksopen=true,
+pdfstartview=FitH,
+pdfpagelayout=OneColumn,
+pdfpagemode=UseOutlines,
+hidelinks,
+breaklinks}
+
+% Shorthand.
+\newcommand{\Code}[1]{\mbox{\textbf{#1}}}
+\newcommand{\CodeCommand}[1]{\mbox{\textbf{\textbackslash{#1}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ACTUAL DOCUMENT.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%
+% TITLE BLOCK %
+%%%%%%%%%%%%%%%
+
+\Title{\CVAuthor}
+
+\begin{SubTitle}
+\par
+\VAR{student.id}
+\,\SubBulletSymbol\,
+\VAR{student.year}
+\,\SubBulletSymbol\,
+\href{mailto:\VAR{student.email}}
+{\VAR{student.email}}
+\,\SubBulletSymbol\,
+\VAR{student.phone}
+\,\SubBulletSymbol\,
+\VAR{student.dob}
+\end{SubTitle}
+
+\begin{Body}
+
+%%%%%%%%%%%%%%%
+% EDUCATION
+%%%%%%%%%%%%%%%
+
+\Section
+{Education}
+{Education}
+{PDF:Education}
+
+\Entry
+\textbf{Indian Institute of Technology},
+Roorkee , India
+
+\Gap
+\BulletItem
+{B.Tech in \VAR{student.branch}}
+\begin{Detail}
+\BLOCK{ for x in sgpa }
+\SubBulletItem
+SGPA : {\VAR{x["value"]}}
+\hfill
+\textbf{\VAR{x["semester"]} Semester}
+\BLOCK{endfor}
+\end{Detail}
+
+
+\BigGap
+\Entry
+\textbf{Class 12, \VAR{twelfth.school_name}},
+India
+
+\Gap
+\BulletItem
+Board : \VAR{twelfth.board}
+\hfill
+\VAR{twelfth.year}
+\BulletItem
+Cumulative GPA: \VAR{twelfth.cgpa} / 10
+
+\BigGap
+\Entry
+\textbf{Class 10, \VAR{tenth.school_name}},
+India
+
+\Gap
+\BulletItem
+Board : \VAR{tenth.board}
+\hfill
+\VAR{tenth.year}
+\BulletItem
+Cumulative GPA: \VAR{tenth.cgpa} / 10
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% RESEARCH EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Section
+{Research Experience}
+{Research Experience}
+{PDF:ResearchExperience}
+
+\Entry
+\href{http://www.example.com/my-institute}
+{\textbf{Institute for Advanced Research}},
+Science College
+
+\Gap
+\BulletItem
+Undergraduate Research Student, Science Department
+\hfill
+\DatestampYMD{2004}{05}{15} --
+\DatestampYMD{2005}{05}{15}
+\begin{Detail}
+\SubBulletItem
+Project:
+Investigations on the Use of Lasers to Measure Climate Change
+\SubBulletItem
+Supervisors:
+Prof.~Jane~Citizen and
+Dr~Ann~Yone
+\SubBulletItem
+Focus:
+Climate change, lasers, statistical analysis, data analytics.
+\end{Detail}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AWARDS & SCHOLARSHIPS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Section
+{Awards \&\newline
+Scholarships}
+{Awards \& Scholarships}
+{PDF:AwardsAndScholarships}
+
+\BLOCK{for i in achievement}
+\Gap
+\BulletItem
+\VAR{i}
+\BLOCK{endfor}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROFESSIONAL AFFILIATIONS & ACTIVITIES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Section
+{Professional Affiliations\newline
+\& Activities}
+{Professional Affiliations \& Activities}
+{PDF:ProfessionalAffiliationsActivities}
+
+\Entry
+\href{http://www.example.com/my-society}
+{\textbf{Joint Society of Earth Scientists and Global Think Tank on Climate Resiliency}},
+\newline
+North Attleborough, Massachusetts, USA
+
+\Gap
+\BulletItem
+Member
+\hfill
+\DatestampY{2009} --
+Present
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% EXTRA CURRICULAR ACTIVITIES
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\Section
+{Extra Curricular Activities}
+{Extra Curricular Activities}
+{PDF:Extra Curricular Activities}
+
+\Entry
+\BLOCK{for i in extra_curr}
+\Gap
+\BulletItem
+{\textbf{\VAR{i["title"]}}}
+\hfill
+\DatestampYMD\VAR{i["start"]} --
+\DatestampYMD\VAR{i["end"]}
+\begin{Detail}
+\VAR{i["text_description"]}
+\end{Detail}
+\BLOCK{endfor}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% OTHER WORK EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Section
+{Other Work\newline
+Experience}
+{Other Work Experience}
+{PDF:OtherWorkExperience}
+
+\Entry
+\BLOCK{for i in intern}
+{\textbf{\VAR{i["organization"]}}}
+\Gap
+\BulletItem
+\VAR{i["designation"]}
+\hfill
+\VAR{i["start_date"]} --
+\VAR{i["end_date"]}
+\begin{Detail}
+\VAR{i["description"]}
+\end{Detail}
+\BLOCK{endfor}
+
+%%%%%%%%%%%%%%%
+% LANGUAGES
+%%%%%%%%%%%%%%%
+
+\Section
+{Languages}
+{Languages}
+{PDF:Languages}
+
+\BLOCK{for i in language}
+\Gap
+\BulletItem
+\VAR{i["language_name"]} :
+\BLOCK{if i["speaking"] == 1}
+Speaking --
+\BLOCK{endif}
+\BLOCK{if i["reading"] == 1}
+Reading --
+\BLOCK{endif}
+\BLOCK{if i["writing"] == 1}
+Writing
+\BLOCK{endif}
+\BLOCK{endfor}
+
+
+%%%%%%%%%%%%
+% SKILLS
+%%%%%%%%%%%%
+
+\Section
+{Skills}
+{Skills}
+{PDF:Skills}
+
+\Entry
+\BLOCK{for i in skill}
+\VAR{i},
+\BLOCK{ endfor }
+
+
+%%%%%%%%%%%%%%%
+% INTERESTS
+%%%%%%%%%%%%%%%
+
+\Section
+{Interests}
+{Interests}
+{PDF:Interests}
+
+\Entry
+Digital photography,
+typography,
+swimming.
+
+%%%%%%%%%%%%%%%%
+% REFERENCES
+%%%%%%%%%%%%%%%%
+
+\Section
+{References}
+{References}
+{PDF:References}
+
+\BulletItem
+\textbf{Professor Jonathan Public}
+\newline
+Professor of Geology and Mechanical Engineering
+\newline
+First American University
+\newline
+1000 First Avenue, Springfield, Massachusetts 22222, USA
+\newline
+\href{mailto:jonathanpublic@example.com}
+{jonathanpublic@example.com}
+\,\SubBulletSymbol\,
++1\,(555)\,222-2222
+
+\BigGap
+\BulletItem
+\textbf{Dr Alice Bob Carol}
+\newline
+Director, Research \& Development
+\newline
+Alpha Engineering Firm
+\newline
+20 North Street, Oakland, Ohio 33333, USA
+\newline
+\href{mailto:alicebobcarol@example.com}
+{alicebobcarol@example.com}
+\,\SubBulletSymbol\,
++1\,(555)\,333-3333
+
+
+
+\end{Body}
+
+%%%%%%%%%%%
+% CV NOTE
+%%%%%%%%%%%
+
+\UseNoteFont%
+\null\hfill%
+[\textit{\CVNote}]
+
+\end{document}
