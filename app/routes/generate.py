@@ -1,5 +1,5 @@
 from flask_login import login_required, current_user
-from flask import Blueprint, Response
+from flask import Blueprint, redirect, url_for
 from models import Resume
 from db import commit
 from generator import render_latex
@@ -29,4 +29,4 @@ def generate():
     for path in junk:
         if os.path.isfile(path):
             os.remove(path)
-    return Response(content, mimetype='text/plain')
+    return redirect(url_for('dashboard.dashboard'))

@@ -38,21 +38,21 @@ def render_latex(uid: int):
         data['tenth'] = tenth
     if twelfth is not None:
         data['twelfth'] = twelfth
-    if len(sgpa.sg_list) is not 0:
+    if len(sgpa.sg_list) != 0:
         data['sgpa'] = sgpa.sg_list
-    if len(skill.skill_list) is not 0:
+    if len(skill.skill_list) != 0:
         data['skill'] = skill.skill_list
-    if len(language.language_list) is not 0:
+    if len(language.language_list) != 0:
         data['language'] = language.language_list
-    if len(achievement.achievement_list) is not 0:
+    if len(achievement.achievement_list) != 0:
         data['achievement'] = achievement.achievement_list
-    if len(extra_curr.ec_list) is not 0:
+    if len(extra_curr.ec_list) != 0:
         data['extra_curr'] = extra_curr.ec_list
-    if len(intern.intern_list) is not 0:
+    if len(intern.intern_list) != 0:
         data['intern'] = intern.intern_list
-    if len(reference.ref_list) is not 0:
+    if len(reference.ref_list) != 0:
         data['reference'] = reference.ref_list
-    if len(project.project_list) is not 0:
+    if len(project.project_list) != 0:
         data['project'] = project.project_list
 
     professor = {}
