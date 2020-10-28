@@ -54,16 +54,16 @@ breaklinks}
 \Title{\VAR{student.name}}
 \begin{SubTitle}
 \par
-\VAR{student.id}
+Enrollment Number: \VAR{student.id}
 \,\SubBulletSymbol\,
-\VAR{student.year}
+Year: \VAR{student.year}
 \,\SubBulletSymbol\,
-\href{mailto:\VAR{student.email}}
+Email: \href{mailto:\VAR{student.email}}
 {\VAR{student.email}}
 \,\SubBulletSymbol\,
-\VAR{student.phone}
+Phone: \VAR{student.phone}
 \,\SubBulletSymbol\,
-\VAR{student.dob}
+DOB: \VAR{student.dob}
 \end{SubTitle}
 \BLOCK{ endif }
 
@@ -304,14 +304,14 @@ Writing
 {PDF:References}
 \BLOCK{ for email in reference }
 \BulletItem
-\textbf{\VAR{professor[email].name}}
+Name: \textbf{\VAR{professor[email].name}}
 \newline
-\VAR{professor[email].department}
+Department: \VAR{professor[email].department}
 \newline
-\href{mailto:\VAR{email}}
+Email: \href{mailto:\VAR{email}}
 {\VAR{email}}
 \,\SubBulletSymbol\,
-\VAR{professor[email].phone}
+Phone: \VAR{professor[email].phone}
 \BigGap
 \BLOCK{ endfor }
 
