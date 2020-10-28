@@ -19,14 +19,36 @@ latex_jinja_env = Environment(
 
 
 def render_latex(uid: int):
-    student=Student.load(current_user.id)
-    tenth=Tenth.load(current_user.id)
-    twelfth=Twelfth.load(current_user.id)
-    sgpa=SGPA.load(current_user.id)
-    skill=Skill.load(current_user.id)
-    language=Language.load(current_user.id)
-    achievement=Achievement.load(current_user.id)
-    extra_curr=ExtraCurricular.load(current_user.id)
-    intern=Internship.load(current_user.id)
+    student = Student.load(current_user.id)
+    tenth = Tenth.load(current_user.id)
+    twelfth = Twelfth.load(current_user.id)
+    sgpa = SGPA.load(current_user.id)
+    skill = Skill.load(current_user.id)
+    language = Language.load(current_user.id)
+    achievement = Achievement.load(current_user.id)
+    extra_curr = ExtraCurricular.load(current_user.id)
+    intern = Internship.load(current_user.id)
+
+    data = {}
+    if student is not None:
+        data['student'] = student
+    if tenth is not None:
+        data['tenth'] = tenth
+    if twelfth is not None:
+        data['twelfth'] = twelfth
+    if len(sgpa.sg_list) is not 0:
+        data['sgpa'] = sgpa.sg_list
+    if len(skill.skill_list) is not 0:
+        data['skill'] = skill.skill_list
+    if len(language.language_list) is not 0:
+        data['language'] = language.language_list
+    if len(achievement.achievement_list) is not 0:
+        data['achievement'] = achievement.achievement_list
+    if len(extra_curr.ec_list) is not 0:
+        data['extra_curr'] = extra_curr.ec_list
+    if len(intern.intern_list) is not 0:
+        data['intern'] = intern.intern_list
+    data['id'] = uid
+
     template = latex_jinja_env.get_template('generator/CV.tex')
-    return template.render(intern=intern.intern_list,extra_curr=extra_curr.ec_list,achievement=achievement.achievement_list,language=language.language_list,student=student,tenth=tenth,twelfth=twelfth,sgpa=sgpa.sg_list,skill=skill.skill_list, id=uid)
+    return template.render(data)

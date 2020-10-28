@@ -16,10 +16,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % CV Info (to be customized).
-\newcommand{\CVAuthor}{\VAR{student.name}}
-\newcommand{\CVTitle}{\VAR{student.name} Resume}
+\newcommand{\CVAuthor}{}
+\newcommand{\CVTitle}{Resume}
 \newcommand{\CVNote}{CV compiled on {\today}}
-\newcommand{\CVWebpage}{http://www.example.com/~johndoe}
+\newcommand{\CVWebpage}{}
 
 % PDF settings and properties.
 \hypersetup{
@@ -52,8 +52,9 @@ breaklinks}
 % TITLE BLOCK %
 %%%%%%%%%%%%%%%
 
-\Title{\CVAuthor}
 
+\BLOCK{ if student is defined }
+\Title{\VAR{student.name}}
 \begin{SubTitle}
 \par
 \VAR{student.id}
@@ -67,6 +68,7 @@ breaklinks}
 \,\SubBulletSymbol\,
 \VAR{student.dob}
 \end{SubTitle}
+\BLOCK{ endif }
 
 \begin{Body}
 
@@ -74,18 +76,24 @@ breaklinks}
 % EDUCATION
 %%%%%%%%%%%%%%%
 
+
+\BLOCK{ if student is defined or sgpa is defined or twelfth is defined or tenth is defined }
+
 \Section
 {Education}
 {Education}
 {PDF:Education}
-
 \Entry
 \textbf{Indian Institute of Technology},
 Roorkee , India
 
+\BLOCK{ if student is defined }
 \Gap
 \BulletItem
 {B.Tech in \VAR{student.branch}}
+\BLOCK{ endif }
+
+\BLOCK{ if sgpa is defined }
 \begin{Detail}
 \BLOCK{ for x in sgpa }
 \SubBulletItem
@@ -94,13 +102,13 @@ SGPA : {\VAR{x["value"]}}
 \textbf{\VAR{x["semester"]} Semester}
 \BLOCK{endfor}
 \end{Detail}
+\BLOCK{ endif }
 
-
+\BLOCK{ if twelfth is defined }
 \BigGap
 \Entry
 \textbf{Class 12, \VAR{twelfth.school_name}},
 India
-
 \Gap
 \BulletItem
 Board : \VAR{twelfth.board}
@@ -108,12 +116,13 @@ Board : \VAR{twelfth.board}
 \VAR{twelfth.year}
 \BulletItem
 Cumulative GPA: \VAR{twelfth.cgpa} / 10
+\BLOCK{ endif }
 
+\BLOCK{ if tenth is defined }
 \BigGap
 \Entry
 \textbf{Class 10, \VAR{tenth.school_name}},
 India
-
 \Gap
 \BulletItem
 Board : \VAR{tenth.board}
@@ -121,6 +130,10 @@ Board : \VAR{tenth.board}
 \VAR{tenth.year}
 \BulletItem
 Cumulative GPA: \VAR{tenth.cgpa} / 10
+\BLOCK{ endif }
+
+\BLOCK{ endif }
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % RESEARCH EXPERIENCE
@@ -160,17 +173,21 @@ Climate change, lasers, statistical analysis, data analytics.
 % AWARDS & SCHOLARSHIPS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\BLOCK{ if achievement is defined }
+
 \Section
 {Awards \&\newline
 Scholarships}
 {Awards \& Scholarships}
 {PDF:AwardsAndScholarships}
-
-\BLOCK{for i in achievement}
+\BLOCK{ for i in achievement }
 \Gap
 \BulletItem
 \VAR{i}
-\BLOCK{endfor}
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -201,13 +218,15 @@ Present
 % EXTRA CURRICULAR ACTIVITIES
 %%%%%%%%%%%%%%%%%%%%%%%
 
+
+\BLOCK{ if extra_curr is defined }
+
 \Section
 {Extra Curricular Activities}
 {Extra Curricular Activities}
 {PDF:Extra Curricular Activities}
-
 \Entry
-\BLOCK{for i in extra_curr}
+\BLOCK{ for i in extra_curr }
 \Gap
 \BulletItem
 {\textbf{\VAR{i["title"]}}}
@@ -217,21 +236,25 @@ Present
 \begin{Detail}
 \VAR{i["text_description"]}
 \end{Detail}
-\BLOCK{endfor}
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OTHER WORK EXPERIENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\BLOCK{ if intern is defined }
+
 \Section
 {Other Work\newline
 Experience}
 {Other Work Experience}
 {PDF:OtherWorkExperience}
-
 \Entry
-\BLOCK{for i in intern}
+\BLOCK{ for i in intern }
 {\textbf{\VAR{i["organization"]}}}
 \Gap
 \BulletItem
@@ -242,46 +265,57 @@ Experience}
 \begin{Detail}
 \VAR{i["description"]}
 \end{Detail}
-\BLOCK{endfor}
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
+
 
 %%%%%%%%%%%%%%%
 % LANGUAGES
 %%%%%%%%%%%%%%%
 
+
+\BLOCK{ if language is defined }
+
 \Section
 {Languages}
 {Languages}
 {PDF:Languages}
-
-\BLOCK{for i in language}
+\BLOCK{ for i in language }
 \Gap
 \BulletItem
 \VAR{i["language_name"]} :
-\BLOCK{if i["speaking"] == 1}
+\BLOCK{ if i["speaking"] == 1 }
 Speaking --
-\BLOCK{endif}
-\BLOCK{if i["reading"] == 1}
+\BLOCK{ endif }
+\BLOCK{ if i["reading"] == 1 }
 Reading --
-\BLOCK{endif}
-\BLOCK{if i["writing"] == 1}
+\BLOCK{ endif }
+\BLOCK{ if i["writing"] == 1 }
 Writing
-\BLOCK{endif}
-\BLOCK{endfor}
+\BLOCK{ endif }
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
 
 
 %%%%%%%%%%%%
 % SKILLS
 %%%%%%%%%%%%
 
+
+\BLOCK{ if skill is defined }
+
 \Section
 {Skills}
 {Skills}
 {PDF:Skills}
-
 \Entry
-\BLOCK{for i in skill}
+\BLOCK{ for i in skill }
 \VAR{i},
 \BLOCK{ endfor }
+
+\BLOCK{ endif }
 
 
 %%%%%%%%%%%%%%%
