@@ -1,4 +1,4 @@
-    ## To run locally
+## To run locally
 - Install [Docker](https://docs.docker.com/engine/install/) and [docker-compose](https://docs.docker.com/compose/install/).
 - Clone the repo and run docker-compose.
 ```shell
