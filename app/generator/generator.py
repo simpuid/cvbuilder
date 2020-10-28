@@ -28,6 +28,8 @@ def render_latex(uid: int):
     achievement = Achievement.load(current_user.id)
     extra_curr = ExtraCurricular.load(current_user.id)
     intern = Internship.load(current_user.id)
+    reference = Reference.load(current_user.id)
+    project = Project.load(current_user.id)
 
     data = {}
     if student is not None:
@@ -48,6 +50,19 @@ def render_latex(uid: int):
         data['extra_curr'] = extra_curr.ec_list
     if len(intern.intern_list) is not 0:
         data['intern'] = intern.intern_list
+
+    professor = {}
+    for email in reference.ref_list:
+        if email not in professor:
+            professor[email] = Professor.load(email)
+    for proj in project.project_list:
+        for email in proj['professor_list']:
+            if email not in professor:
+                professor[email] = Professor.load(email)
+
+    data['professor'] = professor
+    data['reference'] = reference.ref_list
+    data['project'] = project.project_list
     data['id'] = uid
 
     template = latex_jinja_env.get_template('generator/CV.tex')
