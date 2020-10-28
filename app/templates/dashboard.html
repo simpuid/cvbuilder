@@ -33,9 +33,21 @@
                     </div>
                 </div>
             </nav>
-            <div class="mt-4 mb-4">
+            <div class="mt-4">
                 {{ flash_error_success() }}
             </div>
+            {% if download_disabled %}
+                <div class="text-center mt-5">
+                    <img src="/static/images/not-found.png" alt="Resume not found">
+                </div>
+                <div class="text-center mt-5 font-weight-bolder text-info">
+                    Resume not found. Please generate one first.
+                </div>
+            {% else %}
+                <iframe src="/resume" width="100%" height="750px" style="border:1px solid black;">
+                    Something went wrong. Please try again.
+                </iframe>
+            {% endif %}
         </div>
     </div>
 {% endblock content %}
