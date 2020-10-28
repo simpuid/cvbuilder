@@ -69,12 +69,15 @@ DOB: \VAR{student.dob}
 
 \begin{Body}
 
+% Hack
+\Section{}{}{PDF:Body}
+
 %%%%%%%%%%%%%%%
 % EDUCATION
 %%%%%%%%%%%%%%%
 
 
-\BLOCK{ if student is defined or sgpa is defined or twelfth is defined or tenth is defined }
+\BLOCK{ if sgpa is defined or twelfth is defined or tenth is defined }
 
 \Section
 {Education}
@@ -83,13 +86,11 @@ DOB: \VAR{student.dob}
 \Entry
 \textbf{Indian Institute of Technology},
 Roorkee , India
-
 \BLOCK{ if student is defined }
 \Gap
 \BulletItem
 {B.Tech in \VAR{student.branch}}
 \BLOCK{ endif }
-
 \BLOCK{ if sgpa is defined }
 \begin{Detail}
 \BLOCK{ for x in sgpa }
