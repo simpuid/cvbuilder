@@ -50,6 +50,10 @@ def render_latex(uid: int):
         data['extra_curr'] = extra_curr.ec_list
     if len(intern.intern_list) is not 0:
         data['intern'] = intern.intern_list
+    if len(reference.ref_list) is not 0:
+        data['reference'] = reference.ref_list
+    if len(project.project_list) is not 0:
+        data['project'] = project.project_list
 
     professor = {}
     for email in reference.ref_list:
@@ -61,8 +65,6 @@ def render_latex(uid: int):
                 professor[email] = Professor.load(email)
 
     data['professor'] = professor
-    data['reference'] = reference.ref_list
-    data['project'] = project.project_list
     data['id'] = uid
 
     template = latex_jinja_env.get_template('generator/CV.tex')

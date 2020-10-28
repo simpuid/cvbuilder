@@ -3,9 +3,6 @@
 % -*- coding: UTF-8; -*-
 % vim: set fenc=utf-8
 
-
-
-
 \documentclass[letterpaper,MMMyyyy,nonstopmode]{simpleresumecv}
 % Class options:
 % a4paper, letterpaper, nonstopmode, draftmode
@@ -136,38 +133,38 @@ Cumulative GPA: \VAR{tenth.cgpa} / 10
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
-% RESEARCH EXPERIENCE
+% Projects
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\BLOCK{ if project is defined }
+
 \Section
-{Research Experience}
-{Research Experience}
-{PDF:ResearchExperience}
-
+{Projects}
+{Projects}
+{PDF:Projects}
+\BLOCK{ for proj in project }
+\Gap
 \Entry
-\href{http://www.example.com/my-institute}
-{\textbf{Institute for Advanced Research}},
-Science College
-
+\textbf{\VAR{proj.title}}
 \Gap
 \BulletItem
-Undergraduate Research Student, Science Department
+\VAR{proj.description}
 \hfill
-\DatestampYMD{2004}{05}{15} --
-\DatestampYMD{2005}{05}{15}
-\begin{Detail}
-\SubBulletItem
-Project:
-Investigations on the Use of Lasers to Measure Climate Change
-\SubBulletItem
+% \DatestampYMD{2004}{05}{15} --
+% \DatestampYMD{2005}{05}{15}
+\VAR{proj.start_date} -- \VAR{proj.end_date}
+\break
 Supervisors:
-Prof.~Jane~Citizen and
-Dr~Ann~Yone
+\begin{Detail}
+\BLOCK{ for email in proj.professor_list }
 \SubBulletItem
-Focus:
-Climate change, lasers, statistical analysis, data analytics.
+\VAR{professor[email].name}
+\BLOCK{ endfor }
 \end{Detail}
+\BLOCK{ endfor }
 
+\BLOCK{ endif }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AWARDS & SCHOLARSHIPS
@@ -188,30 +185,6 @@ Scholarships}
 \BLOCK{ endfor }
 
 \BLOCK{ endif }
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PROFESSIONAL AFFILIATIONS & ACTIVITIES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\Section
-{Professional Affiliations\newline
-\& Activities}
-{Professional Affiliations \& Activities}
-{PDF:ProfessionalAffiliationsActivities}
-
-\Entry
-\href{http://www.example.com/my-society}
-{\textbf{Joint Society of Earth Scientists and Global Think Tank on Climate Resiliency}},
-\newline
-North Attleborough, Massachusetts, USA
-
-\Gap
-\BulletItem
-Member
-\hfill
-\DatestampY{2009} --
-Present
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -318,58 +291,31 @@ Writing
 \BLOCK{ endif }
 
 
-%%%%%%%%%%%%%%%
-% INTERESTS
-%%%%%%%%%%%%%%%
-
-\Section
-{Interests}
-{Interests}
-{PDF:Interests}
-
-\Entry
-Digital photography,
-typography,
-swimming.
-
 %%%%%%%%%%%%%%%%
 % REFERENCES
 %%%%%%%%%%%%%%%%
+
+
+\BLOCK{ if reference is defined }
 
 \Section
 {References}
 {References}
 {PDF:References}
-
+\BLOCK{ for email in reference }
 \BulletItem
-\textbf{Professor Jonathan Public}
+\textbf{\VAR{professor[email].name}}
 \newline
-Professor of Geology and Mechanical Engineering
+\VAR{professor[email].department}
 \newline
-First American University
-\newline
-1000 First Avenue, Springfield, Massachusetts 22222, USA
-\newline
-\href{mailto:jonathanpublic@example.com}
-{jonathanpublic@example.com}
+\href{mailto:\VAR{email}}
+{\VAR{email}}
 \,\SubBulletSymbol\,
-+1\,(555)\,222-2222
-
+\VAR{professor[email].phone}
 \BigGap
-\BulletItem
-\textbf{Dr Alice Bob Carol}
-\newline
-Director, Research \& Development
-\newline
-Alpha Engineering Firm
-\newline
-20 North Street, Oakland, Ohio 33333, USA
-\newline
-\href{mailto:alicebobcarol@example.com}
-{alicebobcarol@example.com}
-\,\SubBulletSymbol\,
-+1\,(555)\,333-3333
+\BLOCK{ endfor }
 
+\BLOCK{ endif }
 
 
 \end{Body}
