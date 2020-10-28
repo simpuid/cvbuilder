@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 services:
   app:
     container_name: app
@@ -11,6 +11,8 @@ services:
       - ./app:/app
     environment:
       FLASK_ENV: development
+    tmpfs:
+      - /output
 
   db:
     container_name: db

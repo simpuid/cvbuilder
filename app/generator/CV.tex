@@ -1,0 +1,332 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% -*- coding: UTF-8; -*-
+% vim: set fenc=utf-8
+
+\documentclass[letterpaper,MMMyyyy,nonstopmode]{simpleresumecv}
+% Class options:
+% a4paper, letterpaper, nonstopmode, draftmode
+% MMMyyyy, ddMMMyyyy, MMMMyyyy, ddMMMMyyyy, yyyyMMdd, yyyyMM, yyyy
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREAMBLE.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% CV Info (to be customized).
+\newcommand{\CVAuthor}{}
+\newcommand{\CVTitle}{Resume}
+\newcommand{\CVNote}{CV compiled on {\today}}
+\newcommand{\CVWebpage}{}
+
+% PDF settings and properties.
+\hypersetup{
+pdftitle={\CVTitle},
+pdfauthor={\CVAuthor},
+pdfsubject={\CVWebpage},
+pdfcreator={XeLaTeX},
+pdfproducer={},
+pdfkeywords={},
+unicode=true,
+bookmarks=true,
+bookmarksopen=true,
+pdfstartview=FitH,
+pdfpagelayout=OneColumn,
+pdfpagemode=UseOutlines,
+hidelinks,
+breaklinks}
+
+% Shorthand.
+\newcommand{\Code}[1]{\mbox{\textbf{#1}}}
+\newcommand{\CodeCommand}[1]{\mbox{\textbf{\textbackslash{#1}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ACTUAL DOCUMENT.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%
+% TITLE BLOCK %
+%%%%%%%%%%%%%%%
+
+
+\BLOCK{ if student is defined }
+\Title{\VAR{student.name}}
+\begin{SubTitle}
+\par
+Enrollment Number: \VAR{student.id}
+\,\SubBulletSymbol\,
+Year: \VAR{student.year}
+\,\SubBulletSymbol\,
+Email: \href{mailto:\VAR{student.email}}
+{\VAR{student.email}}
+\,\SubBulletSymbol\,
+Phone: \VAR{student.phone}
+\,\SubBulletSymbol\,
+DOB: \VAR{student.dob}
+\end{SubTitle}
+\BLOCK{ endif }
+
+\begin{Body}
+
+% Hack
+\Section{}{}{PDF:Body}
+
+%%%%%%%%%%%%%%%
+% EDUCATION
+%%%%%%%%%%%%%%%
+
+
+\BLOCK{ if sgpa is defined or twelfth is defined or tenth is defined }
+
+\Section
+{Education}
+{Education}
+{PDF:Education}
+\Entry
+\textbf{Indian Institute of Technology},
+Roorkee , India
+\BLOCK{ if student is defined }
+\Gap
+\BulletItem
+{B.Tech in \VAR{student.branch}}
+\BLOCK{ endif }
+\BLOCK{ if sgpa is defined }
+\begin{Detail}
+\BLOCK{ for x in sgpa }
+\SubBulletItem
+SGPA : {\VAR{x["value"]}}
+\hfill
+\textbf{\VAR{x["semester"]} Semester}
+\BLOCK{endfor}
+\end{Detail}
+\BLOCK{ endif }
+
+\BLOCK{ if twelfth is defined }
+\BigGap
+\Entry
+\textbf{Class 12, \VAR{twelfth.school_name}},
+India
+\Gap
+\BulletItem
+Board : \VAR{twelfth.board}
+\hfill
+\VAR{twelfth.year}
+\BulletItem
+Cumulative GPA: \VAR{twelfth.cgpa} / 10
+\BLOCK{ endif }
+
+\BLOCK{ if tenth is defined }
+\BigGap
+\Entry
+\textbf{Class 10, \VAR{tenth.school_name}},
+India
+\Gap
+\BulletItem
+Board : \VAR{tenth.board}
+\hfill
+\VAR{tenth.year}
+\BulletItem
+Cumulative GPA: \VAR{tenth.cgpa} / 10
+\BLOCK{ endif }
+
+\BLOCK{ endif }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Projects
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\BLOCK{ if project is defined }
+
+\Section
+{Projects}
+{Projects}
+{PDF:Projects}
+\BLOCK{ for proj in project }
+\Gap
+\Entry
+\textbf{\VAR{proj.title}}
+\Gap
+\BulletItem
+\VAR{proj.description}
+\hfill
+% \DatestampYMD{2004}{05}{15} --
+% \DatestampYMD{2005}{05}{15}
+\VAR{proj.start_date} -- \VAR{proj.end_date}
+\break
+Supervisors:
+\begin{Detail}
+\BLOCK{ for email in proj.professor_list }
+\SubBulletItem
+\VAR{professor[email].name}
+\BLOCK{ endfor }
+\end{Detail}
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AWARDS & SCHOLARSHIPS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\BLOCK{ if achievement is defined }
+
+\Section
+{Awards \&\newline
+Scholarships}
+{Awards \& Scholarships}
+{PDF:AwardsAndScholarships}
+\BLOCK{ for i in achievement }
+\Gap
+\BulletItem
+\VAR{i}
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% EXTRA CURRICULAR ACTIVITIES
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\BLOCK{ if extra_curr is defined }
+
+\Section
+{Extra Curricular Activities}
+{Extra Curricular Activities}
+{PDF:Extra Curricular Activities}
+\Entry
+\BLOCK{ for i in extra_curr }
+\Gap
+\BulletItem
+{\textbf{\VAR{i["title"]}}}
+\hfill
+\DatestampYMD\VAR{i["start"]} --
+\DatestampYMD\VAR{i["end"]}
+\begin{Detail}
+\VAR{i["text_description"]}
+\end{Detail}
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% OTHER WORK EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\BLOCK{ if intern is defined }
+
+\Section
+{Other Work\newline
+Experience}
+{Other Work Experience}
+{PDF:OtherWorkExperience}
+\Entry
+\BLOCK{ for i in intern }
+{\textbf{\VAR{i["organization"]}}}
+\Gap
+\BulletItem
+\VAR{i["designation"]}
+\hfill
+\VAR{i["start_date"]} --
+\VAR{i["end_date"]}
+\begin{Detail}
+\VAR{i["description"]}
+\end{Detail}
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
+
+
+%%%%%%%%%%%%%%%
+% LANGUAGES
+%%%%%%%%%%%%%%%
+
+
+\BLOCK{ if language is defined }
+
+\Section
+{Languages}
+{Languages}
+{PDF:Languages}
+\BLOCK{ for i in language }
+\Gap
+\BulletItem
+\VAR{i["language_name"]} :
+\BLOCK{ if i["speaking"] == 1 }
+Speaking --
+\BLOCK{ endif }
+\BLOCK{ if i["reading"] == 1 }
+Reading --
+\BLOCK{ endif }
+\BLOCK{ if i["writing"] == 1 }
+Writing
+\BLOCK{ endif }
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
+
+
+%%%%%%%%%%%%
+% SKILLS
+%%%%%%%%%%%%
+
+
+\BLOCK{ if skill is defined }
+
+\Section
+{Skills}
+{Skills}
+{PDF:Skills}
+\Entry
+\BLOCK{ for i in skill }
+\VAR{i},
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
+
+
+%%%%%%%%%%%%%%%%
+% REFERENCES
+%%%%%%%%%%%%%%%%
+
+
+\BLOCK{ if reference is defined }
+
+\Section
+{References}
+{References}
+{PDF:References}
+\BLOCK{ for email in reference }
+\BulletItem
+Name: \textbf{\VAR{professor[email].name}}
+\newline
+Department: \VAR{professor[email].department}
+\newline
+Email: \href{mailto:\VAR{email}}
+{\VAR{email}}
+\,\SubBulletSymbol\,
+Phone: \VAR{professor[email].phone}
+\BigGap
+\BLOCK{ endfor }
+
+\BLOCK{ endif }
+
+
+\end{Body}
+
+%%%%%%%%%%%
+% CV NOTE
+%%%%%%%%%%%
+
+\UseNoteFont%
+\null\hfill%
+[\textit{\CVNote}]
+
+\end{document}
