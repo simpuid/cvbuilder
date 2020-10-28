@@ -10,6 +10,8 @@ from .extra_curricular import ECListForm
 from .reference import ReferenceListForm
 from .sgpa import CGPAForm
 from .internship import InternshipListForm
+from .project import ProjectListForm
 
 __all__ = ["LoginForm", "PasswordForm", "SkillListForm", "TenthForm", "TwelfthForm", "StudentForm",
-           "AchievementListForm", "LanguageListForm", "ECListForm", "ReferenceListForm", "CGPAForm", "InternshipListForm"]
+           "AchievementListForm", "LanguageListForm", "ECListForm", "ReferenceListForm", "CGPAForm",
+           "InternshipListForm", "ProjectListForm"]

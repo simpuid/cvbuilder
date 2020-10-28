@@ -14,6 +14,11 @@
 {% endblock heading %}
 
 {% block form_data %}
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
     <form class="mt-5 ml-5 mr-5" method="POST">
         {{ flash_error_success() }}
         {{ form.hidden_tag() }}

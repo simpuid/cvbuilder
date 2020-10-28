@@ -1,9 +1,9 @@
-## To run locally
+    ## To run locally
 - Install [Docker](https://docs.docker.com/engine/install/) and [docker-compose](https://docs.docker.com/compose/install/).
 - Clone the repo and run docker-compose.
 ```shell
- $ git clone https://github.com/wistic/CV-Builder.git
- $ cd CV-Builder
+ $ git clone https://github.com/simpuid/cvbuilder.git
+ $ cd cvbuilder
  $ docker-compose up
 ```
 - Go to [localhost:5000](http://localhost:5000/) to use the application.

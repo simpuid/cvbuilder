@@ -11,6 +11,7 @@ from .reference import Reference
 from .sgpa import SGPA
 from .internship import Internship
 from .resume import Resume
+from .project import Project
 
 __all__ = ["User", "populate_users", "Student", "Tenth", "Twelfth", "Skill", "Professor", "populate_professors",
-           "Achievement", "Language", "ExtraCurricular", "Reference", "SGPA", "Internship", "Resume"]
+           "Achievement", "Language", "ExtraCurricular", "Reference", "SGPA", "Internship", "Resume", "Project"]

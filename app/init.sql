@@ -111,6 +111,24 @@ CREATE TABLE resume_table
     resume_data mediumblob             NOT NULL
 );
 
+CREATE TABLE project_table
+(
+    student_id          int          NOT NULL,
+    project_title       varchar(255) NOT NULL,
+    project_description varchar(255),
+    project_start_date  date,
+    project_end_date    date,
+    PRIMARY KEY (student_id, project_title)
+);
+
+CREATE TABLE project_professor_table
+(
+    student_id      int          NOT NULL,
+    project_title   varchar(255) NOT NULL,
+    professor_email varchar(255) NOT NULL,
+    PRIMARY KEY (student_id, project_title, professor_email)
+);
+
 ALTER TABLE student_table
     ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
 
@@ -145,4 +163,13 @@ ALTER TABLE reference_table
     ADD FOREIGN KEY (professor_email) REFERENCES professor_table (professor_email);
 
 ALTER TABLE resume_table
+    ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
+
+ALTER TABLE project_professor_table
+    ADD FOREIGN KEY (professor_email) REFERENCES professor_table (professor_email);
+
+ALTER TABLE project_table
+    ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
+
+ALTER TABLE project_professor_table
     ADD FOREIGN KEY (student_id) REFERENCES user_table (user_id);
