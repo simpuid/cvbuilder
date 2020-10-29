@@ -75,7 +75,7 @@ DOB: \VAR{student.dob}
 %%%%%%%%%%%%%%%
 % EDUCATION
 %%%%%%%%%%%%%%%
-
+\BigGap
 
 \BLOCK{ if sgpa is defined or twelfth is defined or tenth is defined }
 
@@ -136,7 +136,7 @@ Cumulative GPA: \VAR{tenth.cgpa} / 10
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Projects
 %%%%%%%%%%%%%%%%%%%%%%%%%
-
+\BigGap
 
 \BLOCK{ if project is defined }
 
@@ -170,15 +170,14 @@ Supervisors:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AWARDS & SCHOLARSHIPS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\BigGap
 
 \BLOCK{ if achievement is defined }
 
 \Section
-{Awards \&\newline
-Scholarships}
-{Awards \& Scholarships}
-{PDF:AwardsAndScholarships}
+{Achievement}
+{Achievement}
+{PDF:Achievement}
 \BLOCK{ for i in achievement }
 \Gap
 \BulletItem
@@ -191,7 +190,7 @@ Scholarships}
 %%%%%%%%%%%%%%%%%%%%%%%
 % EXTRA CURRICULAR ACTIVITIES
 %%%%%%%%%%%%%%%%%%%%%%%
-
+\BigGap
 
 \BLOCK{ if extra_curr is defined }
 
@@ -218,15 +217,14 @@ Scholarships}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OTHER WORK EXPERIENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\BigGap
 
 \BLOCK{ if intern is defined }
 
 \Section
-{Other Work\newline
-Experience}
-{Other Work Experience}
-{PDF:OtherWorkExperience}
+{Internship}
+{Internship}
+{PDF:Internship}
 \Entry
 \BLOCK{ for i in intern }
 {\textbf{\VAR{i["organization"]}}}
@@ -247,7 +245,7 @@ Experience}
 %%%%%%%%%%%%%%%
 % LANGUAGES
 %%%%%%%%%%%%%%%
-
+\BigGap
 
 \BLOCK{ if language is defined }
 
@@ -276,7 +274,7 @@ Writing
 %%%%%%%%%%%%
 % SKILLS
 %%%%%%%%%%%%
-
+\BigGap
 
 \BLOCK{ if skill is defined }
 
@@ -295,7 +293,7 @@ Writing
 %%%%%%%%%%%%%%%%
 % REFERENCES
 %%%%%%%%%%%%%%%%
-
+\BigGap
 
 \BLOCK{ if reference is defined }
 
