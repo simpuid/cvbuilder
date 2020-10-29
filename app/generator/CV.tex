@@ -99,7 +99,13 @@ SGPA : {\VAR{x["value"]}}
 \hfill
 \textbf{\VAR{x["semester"]} Semester}
 \BLOCK{endfor}
+\BLOCK{ if student is defined }
 \end{Detail}
+\Gap
+\BulletItem
+{Minor in \VAR{student.minor}}
+\BLOCK{ endif }
+
 \BLOCK{ endif }
 
 \BLOCK{ if twelfth is defined }
@@ -152,8 +158,6 @@ Cumulative GPA: \VAR{tenth.cgpa} / 10
 \BulletItem
 \VAR{proj.description}
 \hfill
-% \DatestampYMD{2004}{05}{15} --
-% \DatestampYMD{2005}{05}{15}
 \VAR{proj.start_date} -- \VAR{proj.end_date}
 \break
 Supervisors:
