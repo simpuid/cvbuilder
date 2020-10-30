@@ -10,3 +10,5 @@
 - Run `docker-compose down` to stop the containers.
 
 Note: To use [adminer](https://www.adminer.org/), go to [localhost:8080](http://localhost:8080/).
+
+### Live Demo: [`CV Builder`](http://iitr-cvbuilder.herokuapp.com)
