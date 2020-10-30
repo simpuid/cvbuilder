@@ -1,10 +1,10 @@
 import os
 
 db_config = {
-    'user': 'root',
-    'password': 'password',
-    'host': 'db',
-    'port': '3306',
+    'user': os.environ['mysql_user'],
+    'password': os.environ['mysql_password'],
+    'host': os.environ['mysql_host'],
+    'port': os.environ['mysql_port']
 }
 
 

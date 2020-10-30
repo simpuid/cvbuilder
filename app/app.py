@@ -52,3 +52,6 @@ app.register_blueprint(download.blueprint)
 app.register_blueprint(dashboard.blueprint)
 app.register_blueprint(project.blueprint)
 app.register_blueprint(resume.blueprint)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
